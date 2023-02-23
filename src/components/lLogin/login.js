@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-import styles from "./App.module.css";
+import styles from "./login.module.css";
 
 export default function App() {
-  const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
 
   const [password, setPassword] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+    console.log(`Email: ${email}, Password: ${password}`);
   };
   return (
     <div className={styles.container}>
@@ -19,10 +19,10 @@ export default function App() {
         <input
           name="email"
           type="text"
-          value={username}
-          placeholder='Username'
+          value={email}
+          placeholder='Email'
           className={styles.input}
-          onChange={e => setUserName(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
         />
         <p className={styles.khung}></p>
         <input
