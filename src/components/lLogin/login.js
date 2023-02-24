@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import styles from "./login.module.css";
 
-export default function App() {
+export default function Login() {
   const [email, setEmail] = useState();
 
   const [password, setPassword] = useState();

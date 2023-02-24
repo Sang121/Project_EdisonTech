@@ -1,9 +1,11 @@
-  import React from 'react'
-  import Headers from './Headers'
+  import React from 'react';
+  import Header from '../../components/Headers';
+import Footer from '../../components/footer';
   function Home() {
     return (
       <div>
-      <Headers/>
+      <Header/>
+     <Footer/>
       </div>
     )
   }

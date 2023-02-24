@@ -1,6 +1,6 @@
 import React, {Link} from 'react'
 import './headers.css' 
-function Headers() {
+function Header() {
   return (
     <div>
     <header>
@@ -24,16 +24,12 @@ function Headers() {
         <button id="cart">
             <i class="fa fa-shopping-basket" aria-hidden="true"></i>
             Giỏ Hàng
-        </button>
-
-            
-        
+        </button> 
     </nav>
-
 </header>
     </div>
   
   )
 }
 
-export default Headers
+export default Header
