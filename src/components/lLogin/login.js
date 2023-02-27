@@ -23,6 +23,7 @@ export default function App() {
           placeholder='Email'
           className={styles.input}
           onChange={e => setEmail(e.target.value)}
+          required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
         />
         <p className={styles.khung}></p>
         <input
@@ -32,6 +33,7 @@ export default function App() {
           placeholder='Password'
           className={styles.input}
           onChange={e => setPassword(e.target.value)}
+          required
         />
         <br />
         <p><button className={styles.btnSubmit}>Log In</button></p>
