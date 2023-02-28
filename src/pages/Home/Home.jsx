@@ -5,7 +5,7 @@
   import 'bootstrap/dist/css/bootstrap.min.css';
   import Header from '../../components/Headers';
 import Footer from '../../components/footer';
-const base_url = 'https://dummyjson.com/products/2';
+const base_url = 'https://dummyjson.com/products/2 ';
 
   function Home() {
     const [products, setProducts] = useState([]);
@@ -14,7 +14,6 @@ const base_url = 'https://dummyjson.com/products/2';
     setProducts(res.data);
     });
   }, []);
-
     return (
       <div>
       <Header/>
