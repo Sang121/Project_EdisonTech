@@ -6,9 +6,8 @@ import Login from './pages/Login/login';
 function App() {
   return (
     <div>
-   <Login/>
+   <Home/>
     </div>
     );
 }
-
 export default App;

@@ -34,7 +34,7 @@ export default function Login() {
           onChange={e => setPassword(e.target.value)}
         />
         <br />
-        <p><button className={styles.btnSubmit}>Log In</button></p>
+        <p><button className={styles.btnSubmit}>Logâ   In</button></p>
         
       </form>
     </div>

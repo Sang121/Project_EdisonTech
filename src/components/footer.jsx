@@ -1,10 +1,10 @@
 import React from 'react'
-
+import "./footer.css"
 function  Footer
 () {
   return (
-    <div>
-    đoạn footer đơn giản
+    <div className='footer'>
+    <p className="title"> @Design by TechEdison</p>
     </div>
   )
 }
