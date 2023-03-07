@@ -1,0 +1,25 @@
+.container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 5px;
+    grid-row-gap: 25px;
+}
+.cardView{
+   height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 246, 233);
+    border-radius: 15px ;
+    align-items: center;
+    margin :5px;
+   
+}
+.cardView>p{
+    padding :5px;
+}
+.cardView >img{
+    height: 300px;
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+}
