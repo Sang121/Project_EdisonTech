@@ -1,19 +1,34 @@
 .container{
     display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-column-gap: 5px;
+    grid-template-columns: auto auto auto auto auto;
+    grid-column-gap: 0px;
     grid-row-gap: 25px;
+}
+.container-fluid{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 25px;
+    background-color: whitesmoke;
 }
 .cardView{
    height: 500px;
     display: flex;
     flex-direction: column;
-    background-color: rgb(255, 246, 233);
+    cursor: pointer;
     border-radius: 15px ;
-    align-items: center;
-    margin :5px;
+    background-color:rgb(254, 252, 252);
+    margin :10px;
    
 }
+.cardView:hover{
+    border: 1px solid;
+    margin:0px;
+    box-shadow: 2px 5px #d3d2d2;
+    background-color: aliceblue;
+}
+h4{
+    padding: 10px ;}
 .cardView>p{
     padding :5px;
 }
@@ -21,5 +36,5 @@
     height: 300px;
     width: 100%;
     border-radius: 15px 15px 0 0;
-    cursor: pointer;
+    
 }

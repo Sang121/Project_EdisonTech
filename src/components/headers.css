@@ -19,10 +19,11 @@ background-color:white;
   
   /* header */
   nav {
+
     padding: 15px;
     width: 100%;
     display: flex;
-    background: #f7eae6;
+    background:  #f8e3dd;
   }
   
   nav .content-nav {
