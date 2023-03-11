@@ -1,4 +1,4 @@
-
+import styles from "./signup.module.css";
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -25,6 +25,8 @@ const SignupSchema = Yup.object().shape({
 
 const SignupForm = () => {
   return (
+    <div className={styles.container}>
+    <h1 className={styles.title}>CREATE A NEW ACCOUNT </h1>
     <Formik
       initialValues={{
         name: "",
@@ -42,42 +44,50 @@ const SignupForm = () => {
       }}
     >
       {({ isSubmitting }) => (
+       
         <Form>
+          <p> </p>
           <div>
-            <label htmlFor="name">Tên người dùng</label>
-            <Field type="text" name="name" />
-            <ErrorMessage name="name" component="div" className="error" />
+            <label htmlFor="name"></label>
+            <Field type="text" placeholder='Name' name="name" className={styles.input} />
+            <ErrorMessage name="name" component="div" className={styles.error} />
           </div>
+          <p className={styles.khung}> </p>
           <div>
-            <label htmlFor="email">Email</label>
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" className="error" />
+            <label htmlFor="email"></label>
+            <Field type="email" placeholder='Email' name="email" className={styles.input} />
+            <ErrorMessage name="email" component="div" className={styles.error} />
           </div>
+          <p className={styles.khung}> </p>
           <div>
-            <label htmlFor="phone">Số điện thoại</label>
-            <Field type="text" name="phone" />
-            <ErrorMessage name="phone" component="div" className="error" />
+            <label htmlFor="phone"></label>
+            <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
+            <ErrorMessage name="phone" component="div" className={styles.error} />
           </div>
+          <p className={styles.khung}> </p>
           <div>
-            <label htmlFor="password">Mật khẩu</label>
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" className="error" />
+            <label htmlFor="password"></label>
+            <Field type="password" placeholder='Password' name="password" className={styles.input} />
+            <ErrorMessage name="password" component="div" className={styles.error} />
           </div>
+          <p className={styles.khung}> </p>
           <div>
-            <label htmlFor="confirmPassword">Nhập lại mật khẩu</label>
-            <Field type="password" name="confirmPassword" />
+            <label htmlFor="confirmPassword"></label>
+            <Field type="password" placeholder='ConfirmPassword' name="confirmPassword" className={styles.input} />
             <ErrorMessage
               name="confirmPassword"
               component="div"
-              className="error"
+              className={styles.error}
             />
           </div>
-          <button type="submit" disabled={isSubmitting}>
-            Đăng ký
+          <p> </p>
+          <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
+          SIGN UP
           </button>
         </Form>
       )}
     </Formik>
+    </div>
   );
 };
 
