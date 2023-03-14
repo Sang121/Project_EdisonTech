@@ -1,31 +1,49 @@
 .container {
-    padding: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-  }
-  .title {
-   color: #4580ed;
+  position: absolute;
+  padding: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  align-items: center;
+ justify-self: center;
+  background-color:#e4f4f5 ;
+  width: 440px;
+  height: 500px;
+  right: 0%;
+  margin: 10px;
+  border-radius: 15px;
+
   text-align: center;
-  margin-bottom: 50px;
-  }
-  .khung {
-   margin-bottom: 10px;
-  }
-  .input {
-   height: 30px;
-   border: 1px solid #4580ed;
-   border-radius: 15px;
-   width: 800px;
-   
-  }
-  .btnSubmit {
-   margin-top: 20px;
-   height: 40px;
-   width: 200px;
-   background: #45c3ed;
-   border-radius: 10px;
-   color: #fff;
-   font-weight: bold;
-   border: 1px solid #8663cd;
-  
-  }
+}
+.h1 {
+ color: #4580ed;
+text-align: center;
+margin-bottom: 50px;
+}
+
+.field1 {
+ height: 30px;
+ border: 1px solid #4580ed;
+ border-radius: 13px;
+ width: 400px;
+ margin-bottom: 10px;
+}
+.field2 {
+  height: 30px;
+  border: 1px solid #4580ed;
+  border-radius: 13px;
+  width: 400px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+ }
+.btnSubmit {
+ margin-top: 40px;
+ height: 35px;
+ width: 111px;
+ background: #45c3ed;
+ border-radius: 10px;
+ color: #fff;
+ font-weight: bold;
+ border: 1px solid #8663cd;
+}
+.error{
+  color: rgb(214, 12, 12);
+}
