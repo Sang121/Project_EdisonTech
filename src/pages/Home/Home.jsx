@@ -4,44 +4,14 @@
   import Slideshow from '../../components/slideshow';
   import Header from '../../components/Headers';
   import Footer from '../../components/footer';
-const base_url = 'https://dummyjson.com/products/';
-
+  import ProductList from '../../components/ProductList';
   function Home() {
-    const [products, setProducts] =  useState([])
-    useEffect(() => {
-      try{
-    axios.get(base_url)
-      .then(response => {
-
-        setProducts(response.data.products);
-
-      })}
-      catch(error){
-        console.log(error);
-      }
-
-    },[]);
+    
 
     return (
       <div>
       <Header/>
-      <div className=" container">
-      {products.map((product, index) => (
-
-        <div className='cardViewContainer' key={index}><div className="cardView">
-       
-        <img src={product.thumbnail} className="thumbnail"/>
-
-       <h4> {product.brand}</h4>
-       <p> {product.title}</p>
-       <h5>{product.price}</h5>
-        <p> {product.description}</p>
-        
-        </div>
-        </div>
-      ))}
-
-    </div>
+      <ProductList/>
      <Footer/>
       </div>
     )  
