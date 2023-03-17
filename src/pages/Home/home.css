@@ -1,40 +1,79 @@
 .container{
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 25px;
+    grid-template-columns: auto auto auto auto ;
+   column-gap: 15px;
+   row-gap: 25px;
 }
 .container-fluid{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-column-gap: 0px;
-    grid-row-gap: 25px;
     background-color: whitesmoke;
 }
 .cardView{
-   height: 500px;
+    
+   height: 400px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     border-radius: 15px ;
-    background-color:rgb(254, 252, 252);
-    margin :10px;
-   
+    transition: transform .1s;
+    z-index: 0;
+    background-color:whitesmoke;
+    
 }
 .cardView:hover{
     border: 1px solid;
-    margin:0px;
-    box-shadow: 2px 5px #d3d2d2;
+    transform: scale(1.05);
+    z-index: 3;
     background-color: aliceblue;
 }
 h4{
     padding: 10px ;}
 .cardView>p{
     padding :5px;
+    display: -webkit-box;
+    max-height: 3.2rem;
+   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    line-height: 1.6rem;
+
+    -webkit-line-clamp: 2;
 }
 .cardView >img{
-    height: 300px;
+    height: 170px;
     width: 100%;
     border-radius: 15px 15px 0 0;
     
 }
+@media only screen and (max-width: 1200px)  {
+   
+    .container{
+        display: grid;
+        grid-template-columns: auto auto auto ;
+        
+    }
+}
+@media only screen and (max-width: 768px)  {
+    .container{
+        display: grid;
+        grid-template-columns: auto auto ;
+        grid-column-gap: 15px;
+        grid-row-gap: 25px;
+        
+    }
+    
+}
+
+
+@media only screen and (max-width: 420px)  {
+    .container{
+        display: grid;
+        
+        grid-row-gap: 25px;
+        
+    }
+    .cardViewContainer {
+        grid-column: 1/span4 ;
+    }
+}   

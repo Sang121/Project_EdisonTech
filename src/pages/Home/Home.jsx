@@ -25,17 +25,18 @@ const base_url = 'https://dummyjson.com/products/';
     return (
       <div>
       <Header/>
-      <div className=" container-fluid">
+      <div className=" container">
       {products.map((product, index) => (
 
-        <div key={index}><div className="cardView">
+        <div className='cardViewContainer' key={index}><div className="cardView">
        
         <img src={product.thumbnail} className="thumbnail"/>
 
        <h4> {product.brand}</h4>
        <p> {product.title}</p>
-       <h5>${product.price}</h5>
+       <h5>{product.price}</h5>
         <p> {product.description}</p>
+        
         </div>
         </div>
       ))}

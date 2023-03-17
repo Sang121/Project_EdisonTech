@@ -1,35 +1,55 @@
-import React, {Link} from 'react'
-import './headers.css' 
+import React, { useEffect, useState} from 'react';
+import { Link } from "react-router-dom";
+import './headers.css';
+import { FaUserCircle } from 'react-icons/fa';
+
 function Header() {
   return (
     <div>
-    <header>
-    <nav>
-        <div class="img-nav">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Shopee.svg/2560px-Shopee.svg.png" alt="aa" />
-        </div>
-        <div class="content-nav">
-            <ul>
-                <li><a href="#">Điện thoại</a></li>
-                <li><a href="#">Máy tính bảng</a></li>
-                <li><a href="#">Laptop</a></li>
-                <li><a href="#">Ti vi</a></li>
-            </ul>
-            <form>
-                <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." />
-                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-            </form>
-        </div>
-       
-        <button id="cart">
-            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-            Giỏ Hàng
-        </button> 
-    </nav>
-</header>
+     
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+          <div className="container-fluid color">
+            <a className="navbar-brand" href="/home">Shop Linh tinh</a>
+
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a href="/Home" className="nav-link active" aria-current="page" >Home</a>
+                </li>
+                <li className="nav-item">
+                  <a href="/laptop" className="nav-link active">Laptop</a>
+                </li>
+                <li className="nav-item">
+                  <a href="/Phone" className="nav-link active">Phone</a>
+                </li>
+                <li className="nav-item">
+                  <a href="/tivi" className="nav-link active">Tivi</a>
+                </li>
+              </ul>
+              <form className="d-flex" role="search">
+                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                <button className="btn btn-outline-success" type="submit">Search</button>
+              </form>
+              <div className="d-flex align-items-center">
+                <a href="/">
+                  <FaUserCircle className="me-1" size={25} />
+                  <span  className=" btn btn-outline-light top-link-itm-txt me-2 " >Đăng nhập</span>
+                </a>
+                <a href="/">
+                  <button type='button' className=" btn-outline-light btn me-2">Đăng ký</button>
+                </a>
+              </div>
+            </div>
+          </div>
+         
+        </nav>
+     
     </div>
-  
-  )
+  );
 }
 
-export default Header
+export default Header;
