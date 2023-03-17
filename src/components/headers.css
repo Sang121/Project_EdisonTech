@@ -11,3 +11,6 @@
   border-radius: 10px;
 transition: transform .1s;
 }
+.btn-log{
+  color :black;
+}
