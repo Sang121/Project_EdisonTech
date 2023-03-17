@@ -2,14 +2,14 @@ import React, { useEffect, useState} from 'react';
 import { Link } from "react-router-dom";
 import './headers.css';
 import { FaUserCircle } from 'react-icons/fa';
-
+import Login from './login';
 function Header() {
   return (
     <div>
      
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid color">
-            <a className="navbar-brand" href="/home">Shop Linh tinh</a>
+            <a className="navbar-brand" href="/">Shop Linh tinh</a>
 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -35,13 +35,14 @@ function Header() {
                 <button className="btn btn-outline-success" type="submit">Search</button>
               </form>
               <div className="d-flex align-items-center">
-                <a href="/">
+                <Link to="/login" className='btn-login'>
                   <FaUserCircle className="me-1" size={25} />
                   <span  className=" btn btn-outline-light top-link-itm-txt me-2 " >Đăng nhập</span>
-                </a>
-                <a href="/">
+                </Link>
+              
+                <Link to="/register">
                   <button type='button' className=" btn-outline-light btn me-2">Đăng ký</button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
