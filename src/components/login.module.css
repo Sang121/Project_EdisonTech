@@ -1,15 +1,40 @@
-.container {
+.container{
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient( #45c3ed,#cfc1c1);
+  height: 700px;
+}
+.logo{
+  height: 60%;
+  width: 40%;
+  border-radius: 10px;
+  margin-left: 15%;
+ margin-top: 4%;
+ object-fit: cover;
+ background-color: red;
+justify-content: center;
+ display: flex;
+ padding :15px;
+}
+.logo>img{
+  height: 20%;
+  width: 30%;
+  
+
+}
+.form {
   padding: 20px;
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
   display:block;
-  height: 500px;
-  width: 720px;
-  background-color: #d6cece;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+  height: 50%;
+ width: 30%;
+
+    margin-left: 30px;
+
+  margin-top: 4%;
   border-radius: 15px;
+
 }
 .h1 {
  color: #4580ed;
@@ -17,15 +42,15 @@ text-align: center;
 margin-bottom: 50px;
 }
 
-.input {
+/* .input {
   border: 1px solid #4580ed;
   border-radius: 10px;
-  width:80%;
+  width:100%;
+  margin: 15px;
   padding:5px 10px ;
-  margin: 10px;
-  
-}
-.btnSubmit {
+} */
+
+/* .btnSubmit {
 
  height: 35px;
  width: 111px;
@@ -35,6 +60,192 @@ margin-bottom: 50px;
  font-weight: bold;
  border: 1px solid #8663cd;
 }
+.btnSubmit:hover {
+  background: #4082f5;
+  box-shadow: 0px 4px 35px -5px #4082f5;
+  cursor: pointer;
+} */
 .error{
-  color: rgb(214, 12, 12);
+  color: rgb(36, 112, 47);
 }
+.khung{
+  background-image: linear-gradient( #45c3ed,#a75a5a);
+
+}
+
+
+.container form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #172bc2;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  border-radius: 10px;
+  border: 2px solid #756ecc;
+  background-color: #d5c6cf;
+}
+
+.container button:hover {
+  background: #5231b6;
+  color: #e3c5c5;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #5231b6,
+              0 0 25px #5231b6,
+              0 0 50px #5231b6,
+              0 0 100px #5231b6;
+              border: 2px #e3c5c5;
+}
+
+.container button span {
+  position: absolute;
+  display: block;
+}
+
+.container button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #2d1eca);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.container button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent,  #2d1eca);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.container button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(270deg, transparent, #2d1eca);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.container button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent,  #2d1eca);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+
+.container .item {
+  position: relative;
+}
+
+.container .item input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #134f20;
+  border: none;
+  border-bottom: 1px solid #928dcf;
+  outline: none;
+  background: transparent;
+}
+.container .item label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #2d1eca;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.container .item input:focus ~ label,
+.container .itemser-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #928dcf;
+  font-size: 15px;
+}
+
+.forgot {
+  text-align: center;
+  margin: 0.5rem 0;
+  color: var(--dark);
+  font-size: 16px;
+  color: #be5298;
+}
+  
+.forgot a {
+  font-size: 16px;
+  color: var(--main-color);
+  text-decoration: none;
+  margin-left:5px;
+}
+  
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.checkbox + label {
+  font-size: 20px;
+}
+
+.trong{
+  height: 20px;
+}
+
+
+
