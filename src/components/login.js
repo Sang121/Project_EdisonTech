@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./login.module.css";
-
+import logo from '../assets/logo.png'
 
 const LoginForm = () => {
   const initialValues = { email: "", password: "", rememberMe: false };
@@ -27,7 +27,7 @@ const LoginForm = () => {
   return (
     <div className={styles.container}>
     <div className={styles.logo}  >
-      hbjhjh
+    <a  href="/"> <img  src={logo} className="logo" /></a>
     </div>
     <Formik
       initialValues={initialValues}
@@ -66,7 +66,7 @@ const LoginForm = () => {
         <span></span>
         <span></span>
         <span></span>
-        login
+        Login
       </button>
         </Form>
       )}
