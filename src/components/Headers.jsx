@@ -1,15 +1,19 @@
 import React, { useEffect, useState} from 'react';
+import {ReactSVG} from 'react-svg';
 import { Link } from "react-router-dom";
 import './headers.css';
 import { FaUserCircle } from 'react-icons/fa';
 import Login from './login';
+import logo from '../assets/logo.png'
+
 function Header() {
   return (
     <div>
      
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid color">
-            <a className="navbar-brand" href="/">Shop Linh tinh</a>
+          <a  href="/"> <img  src={logo} className="logo" /></a>
+          
 
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
