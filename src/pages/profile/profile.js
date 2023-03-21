@@ -99,6 +99,9 @@ const ProfileForm = () => {
           
           <p>  </p> 
           <tr>
+            <button className={styles.btnBack}> <a href="/"> Back</a></button>
+          </tr>
+          <tr>  
           <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
           SAVE
           </button>
