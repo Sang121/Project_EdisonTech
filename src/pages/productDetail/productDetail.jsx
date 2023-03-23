@@ -9,7 +9,7 @@ const base_url = 'https://dummyjson.com';
 
 function ProductDetail() {
   const [product, setProduct] = useState([])
-
+  const [quantity, setQuantity] = useState(1);
   let { id } = useParams();
 
   useEffect(() => {
@@ -18,7 +18,6 @@ function ProductDetail() {
         axios.get(`${base_url}/products/${id}`)
           .then(response => {
             setProduct(response.data);
-
           })
       }
       catch (error) {
@@ -29,11 +28,12 @@ function ProductDetail() {
     
   }, []);
 
+
   return (
     <div>
       <Header />
       <div className="container row">
-        <div className="row col-5 ">
+        <div className="row image col-lg-5 col-md-12 ">
           <div className="col-12">
             <ul className="nav nav-tabs nav-justified">
               <li className="nav-item ">
@@ -87,33 +87,24 @@ function ProductDetail() {
           </div>
         </div>
 
-        <div className="row col-7">
-          <div className="col-9">
+        <div className="row   col-lg-7 col-md-12 details">
+          <div className="col-12">
             <h1 className="red">{product.title}</h1>
-            <p>Giá sản phẩm: {(product.price * (100 - product.discountPercentage) / 100).toFixed(2)}$</p>
-            <div className="btn-group" role="group" aria-label="Basic outlined example">
-              <h2>Màu sắc &nbsp;</h2>
-              <button type="button" className="btn btn-outline-primary">Black</button>
-              <button type="button" className="btn btn-outline-primary">Green</button>
-              <button type="button" className="btn btn-outline-primary">White</button>
-            </div><br />
-            <div className="btn-group" role="group" aria-label="Basic outlined example">
-              <h2>Kích cỡ &nbsp;</h2>
-              <button type="button" className="btn btn-outline-primary">M</button>
-              <button type="button" className="btn btn-outline-primary">L</button>
-              <button type="button" className="btn btn-outline-primary">XL</button>
+            <div className='price'>
+              <h4 className=''> Giá sản phẩm: ${ (product.price*(100-product.discountPercentage)/100).toFixed(2)} </h4>
+              <p className='old-price'>${product.price}</p>
+              
             </div>
+            <p  className='stock'> Remaining: { product.stock} product </p>
             <div>
               <button type="button">Add to cart</button>
             </div>
-            <div>
-              <p>
-                <button onclick="totalClick(-1)">-</button>
-                <span id="totalClicks">1</span>
-                <button onclick="totalClick(1)">+</button>
-              </p>
-            </div>
-            <h4  className='dess'> {product.description}</h4>
+            <div >
+                <button onClick={() => setQuantity(quantity - 1)}>-</button>
+                <span >{quantity}</span>
+                <button onClick={() => setQuantity(quantity + 1)}>+</button>
+            </div> 
+            <h5  className='dess'> {product.description}</h5>
           </div>
 
         </div>

@@ -1,10 +1,13 @@
-.slideshow{
-    display: flex ;
-    justify-content: center ;
-    width: 100%;
-    margin: 10px;
-}
-.imgs{
-
-    height: 400px;
-}
+.slider-item {
+    max-height: 300px;
+  }
+  .slider-item img {
+    object-fit: cover;
+    width: 350px;
+    height: 350px;
+  }
+  .slider-content {
+    overflow-y: hidden;
+  }
+  @media screen and (min-width: 576px) {
+  }

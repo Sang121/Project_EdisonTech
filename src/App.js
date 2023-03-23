@@ -8,6 +8,7 @@ import ProductDetails from './pages/productDetail/productDetail';
 import Login from './pages/Login/login';
 import Register from './pages/register/register';
 import ProfileForm from './pages/profile/profile';
+import Search from './pages/Search';
 function App() {
   const router = createBrowserRouter([
     {
@@ -20,7 +21,11 @@ function App() {
     },
     {
       path: '/product/:id',
-      element: <ProductDetails />
+      element: <ProductDetails/>
+    },
+    {
+      path: '/search/:searchTerm',
+      element: <Search/>
     },
     {
       path: '/register',
