@@ -6,13 +6,30 @@
 
   import Footer from '../../components/footer';
   import ProductList from '../../components/ProductList';
+  const base_url = 'https://dummyjson.com/products/';
+  
   function Home() {
-    
+    const [products, setProducts] =  useState([])
+    useEffect(() => {
+      try{
+    axios.get(base_url)
+      .then(response => {
+
+        setProducts(response.data.products);
+
+      })}
+      catch(error){
+        console.log(error);
+      }
+
+    },[]);
+
 
     return (
-      <div>
+      <div >
       <Header/>
-      <ProductList/>
+     
+      {ProductList(products)}
      <Footer/>
       </div>
     )  
