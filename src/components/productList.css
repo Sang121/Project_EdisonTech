@@ -37,10 +37,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    -webkit-line-clamp: 2;
-    line-height: 1.4rem;
-
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-height: 1.4rem;  
+    -webkit-line-clamp: 3;
 }
 .cardView >img{
     height: 170px;
@@ -72,7 +71,6 @@
 
 
 @media only screen and (max-width: 1200px)  {
-   
     .container{
         display: grid;
         grid-template-columns: auto auto auto ;
@@ -97,8 +95,6 @@
         grid-template-columns: auto  ;
         grid-column-gap: 15px;
         grid-row-gap: 25px;
-        
-    }
-    
+    }  
 }   
 

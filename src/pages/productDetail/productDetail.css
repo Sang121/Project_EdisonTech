@@ -1,7 +1,21 @@
 .item{
     height: 100px;
     width: 100px;
-    
     object-fit: contain;
     margin:10px
+}
+
+.nav{
+    display: flex;
+    flex-direction: column;
+
+}
+.small-img{
+    display: flex;
+    flex-direction: row;
+}
+.img-cover{
+    height: 400px;
+    width: 100%;
+    object-fit  :cover;
 }
