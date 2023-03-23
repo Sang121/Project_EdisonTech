@@ -227,4 +227,24 @@ margin-bottom: 50px;
 }
 
 
+/* @media only screen and (max-width: 1200px)  {
+   
+  .container{
+      display: grid;
+      grid-template-columns: auto auto auto ;
+      
+  }
+} */
+@media only screen and (max-width: 768px)  {
+  .logo{
+      display:none;
+      
+  }
+  .form{
+    width: 100%;
+  }
+  
+}
+
+
 
