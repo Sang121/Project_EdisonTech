@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./login.module.css";
 import logo from '../assets/logo.png'
+import axios from "axios";
 
 const LoginForm = () => {
   const initialValues = { email: "", password: "", rememberMe: false };
@@ -16,12 +17,22 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert( `Email: ${values.email}\nPassword: ${values.password}\nRemember me: ${
-        values.rememberMe ? "Yes" : "No"
-      }`);
-      setSubmitting(false);
-    }, 400);
+    const { email, password } = values;
+    const data = { email, password };
+    axios.post("http://http://localhost:3000/login", data)
+      .then(response => {
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        alert(`Email: ${email}\nPassword: ${password}\nRemember me: ${
+          values.rememberMe ? "Yes" : "No"
+        }`);
+        setSubmitting(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setSubmitting(false);
+      });
+      console.log(data);
   };
 
   return (
