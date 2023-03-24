@@ -43,36 +43,34 @@ function Header() {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/laptop" className="nav-link active">
+                <a href="/search/laptop" value={searchTerm} className="nav-link active">
                   Laptop
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/Phone" className="nav-link active">
+                <a href="/search/Phone" className="nav-link active">
                   Phone
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/tivi" className="nav-link active">
+                <a href="/search/tivi" className="nav-link active">
                   Tivi
                 </a>
               </li>
             </ul>
 
             <form className="d-flex" onSubmit={handleSubmit}>
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                value={searchTerm}
-                onChange={event => setSearchTerm(event.target.value)}
-              />
-
-              <button className="btn btn-outline-success" type="submit">
-                Search{" "}
-              </button>
-
+              <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+            <div class="input-group">
+              <input type="search"
+              value={searchTerm}
+              onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập từ bạn cần tìm?"
+               aria-describedby="button-addon1" class="form-control border-0 bg-light"/>
+              <div class="input-group-append">
+                  <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+          </div>
             </form>
 
             <div className="d-flex align-items-center">

@@ -9,7 +9,6 @@
     width: 70%;
     left: 15%;
   border-radius: 15px;
-background-color: #ffc107;
    margin-bottom:10px ;
    object-fit: cover;
    
@@ -34,7 +33,7 @@ background-color: #ffc107;
     transition: transform .1s;
     z-index: 0;
     background-color:whitesmoke;
-    
+    font-style:oblique;
 }
 .cardView:hover{
     border: 1px solid;
