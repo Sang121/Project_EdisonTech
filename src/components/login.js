@@ -47,9 +47,9 @@ let isLogged=false;
          
           <div className={styles.item}>
           
-            <Field  type="email"  name="email" className={styles.input} />
-            <p className={styles.trong}> <ErrorMessage name="email" component="div" className={styles.error} /></p>
-           
+            <Field type="email"  name="email" className={styles.input} />
+            <p className={styles.trong}></p>
+            <ErrorMessage name="email" component="div" className={styles.error} />
             <label>Email</label>
           </div>
           <div className={styles.item} >

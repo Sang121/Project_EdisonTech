@@ -58,6 +58,16 @@
     margin-top: 10px;
     margin-left: 44px;
 }
+.btnBack{
+    height: 40px;
+   width: 150px;
+   background: #45c3ed;
+   border-radius: 10px;
+   color: #fff;
+   font-weight: bold;
+   border: 1px solid #8663cd;
+   margin-left: 10px;
+}
 .btnSubmit{
   
    height: 40px;
@@ -67,7 +77,6 @@
    color: #fff;
    font-weight: bold;
    border: 1px solid #8663cd;
-   margin-top: 25px;
-   margin-left: 350px;
+   margin-right: 10px;
    
 }

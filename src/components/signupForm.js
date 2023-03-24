@@ -28,7 +28,7 @@ const SignupForm = () => {
     <div className={styles.container}>
     <h1 className={styles.title}>REGISTER</h1>
     <Formik
-      initialValues={{
+      initialValues={{  
         name: "",
         email: "",
         phone: "",
