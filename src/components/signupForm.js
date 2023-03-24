@@ -26,7 +26,7 @@ const SignupSchema = Yup.object().shape({
 const SignupForm = () => {
   return (
     <div className={styles.container}>
-    <h1 className={styles.title}>CREATE A NEW ACCOUNT </h1>
+    <h1 className={styles.title}>REGISTER</h1>
     <Formik
       initialValues={{
         name: "",
@@ -44,47 +44,44 @@ const SignupForm = () => {
       }}
     >
       {({ isSubmitting }) => (
-       
-        <Form>
       
-          <div>
+        <Form className={styles.form}>
+          <div >
             <label htmlFor="name"></label>
             <Field type="text" placeholder='Name' name="name" className={styles.input} />
-            <ErrorMessage name="name" component="div" className={styles.error} />
           </div>
-          <p className={styles.khung}> </p>
+          <p className={styles.khung}> <ErrorMessage name="name" component="div" className={styles.error} /> </p>
           <div>
             <label htmlFor="email"></label>
-            <Field type="email" placeholder='Email' name="email" className={styles.input} />
-            <ErrorMessage name="email" component="div" className={styles.error} />
+            <Field type="text" placeholder='Email' name="email" className={styles.input} />
           </div>
-          <p className={styles.khung}> </p>
+          <p className={styles.khung}>  <ErrorMessage name="email" component="div" className={styles.error} /></p>
           <div>
             <label htmlFor="phone"></label>
             <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
-            <ErrorMessage name="phone" component="div" className={styles.error} />
+          
           </div>
-          <p className={styles.khung}> </p>
+          <p className={styles.khung}> <ErrorMessage name="phone" component="div" className={styles.error} /> </p>
           <div>
             <label htmlFor="password"></label>
             <Field type="password" placeholder='Password' name="password" className={styles.input} />
-            <ErrorMessage name="password" component="div" className={styles.error} />
+            
           </div>
-          <p className={styles.khung}> </p>
+          <p className={styles.khung}><ErrorMessage name="password" component="div" className={styles.error} /> </p>
           <div>
             <label htmlFor="confirmPassword"></label>
             <Field type="password" placeholder='Confirm Password' name="confirmPassword" className={styles.input} />
-            <ErrorMessage
+            
+          </div>
+          <p className={styles.khung}><ErrorMessage
               name="confirmPassword"
               component="div"
               className={styles.error}
-            />
-          </div>
-        
+            /> </p>
           <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
           SIGN UP
           </button>
-         
+        
         </Form>
       )}
     </Formik>

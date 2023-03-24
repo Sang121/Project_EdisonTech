@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./login.module.css";
 import logo from '../assets/logo.png'
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const LoginForm = () => {
-  const initialValues = { email: "", password: "", rememberMe: false };
+  
 
+  const initialValues = { email: "", password: "", rememberMe: false };
+let isLogged=false;
   const validationSchema = Yup.object({
     email: Yup.string()
-    .email("Địa chỉ email không hợp lệ")
     .required("Email không được bỏ trống"),
     password: Yup.string()
     .required("Mật khẩu không được bỏ trống"),
@@ -23,6 +26,8 @@ const LoginForm = () => {
       setSubmitting(false);
     }, 400);
   };
+
+
 
   return (
     <div className={styles.container}>
@@ -42,15 +47,15 @@ const LoginForm = () => {
          
           <div className={styles.item}>
           
-            <Field type="email"  name="email" className={styles.input} />
-            <p className={styles.trong}></p>
-            <ErrorMessage name="email" component="div" className={styles.error} />
+            <Field  type="email"  name="email" className={styles.input} />
+            <p className={styles.trong}> <ErrorMessage name="email" component="div" className={styles.error} /></p>
+           
             <label>Email</label>
           </div>
           <div className={styles.item} >
             <Field type="password"  name="password" className={styles.input} />
-            <p className={styles.trong}></p>
-            <ErrorMessage name="password" component="div" className={styles.error} />
+            <p className={styles.trong}><ErrorMessage name="password" component="div" className={styles.error} /></p>
+            
             <label>Password</label>
           </div>
           <div>
@@ -59,6 +64,7 @@ const LoginForm = () => {
         <label htmlFor="rememberMe" >
           Remember me
         </label>
+        <Link className={styles.link} to="/register" >Register</Link>
           </div>
 
             <button type="submit" disabled={isSubmitting}>
