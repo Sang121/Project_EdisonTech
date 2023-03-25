@@ -9,7 +9,7 @@ import axios from "axios";
 const LoginForm = () => {
   
 
-  const initialValues = { email: "", password: "", rememberMe: false };
+  const initialValues = { email: "", password: ""};
 let isLogged=false;
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -20,9 +20,7 @@ let isLogged=false;
 
   const onSubmit = (values, { setSubmitting }) => {
     setTimeout(() => {
-      alert( `Email: ${values.email}\nPassword: ${values.password}\nRemember me: ${
-        values.rememberMe ? "Yes" : "No"
-      }`);
+      alert( `Email: ${values.email}\nPassword: ${values.password}\n`);
       setSubmitting(false);
     }, 400);
   };
@@ -59,14 +57,6 @@ let isLogged=false;
             <label>Password</label>
           </div>
           <div>
-
-            <Field type="checkbox" name="rememberMe" className={styles.checkbox} />
-        <label htmlFor="rememberMe" >
-          Remember me
-        </label>
-        <Link className={styles.link} to="/register" >Register</Link>
-          </div>
-
             <button type="submit" disabled={isSubmitting}>
         <span></span>
         <span></span>
@@ -74,6 +64,8 @@ let isLogged=false;
         <span></span>
         Login
       </button>
+      <Link className={styles.link} to="/register" >Register</Link>
+      </div>
         </Form>
       )}
     </Formik>
