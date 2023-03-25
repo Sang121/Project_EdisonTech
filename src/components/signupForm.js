@@ -2,6 +2,7 @@ import styles from "./signup.module.css";
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -78,6 +79,7 @@ const SignupForm = () => {
               component="div"
               className={styles.error}
             /> </p>
+            <Link className={styles.link} to="/login" >Login</Link>
           <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
           SIGN UP
           </button>

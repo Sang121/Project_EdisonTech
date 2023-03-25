@@ -4,42 +4,69 @@
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
 
- background-image: url(https://th.bing.com/th/id/R.79b8e018076404994c4d5d12f2025209?rik=97apBFJSeoHqhg&pid=ImgRaw&r=0) ;
+ background: url('signup3.png') ;
  display: flex;
  flex-direction: column;
 justify-content: center;
 align-items: center;
+background-size:cover;
 
- background-size: cover;
+
  
  
 }
 .title {
- color: #4580ed;
+ color: #d51097;
 text-align: center;
-margin-bottom: 50px;
+margin-bottom: 20px;
 }
 .khung {
- margin-bottom: 20px;
+  height: 20px;
+  margin-top: 15px;
+  margin-bottom: -5px;
 
 }
 .input {
   display:flex;
  border: none;
+ outline: none;
+ width: 350px;
+ height: 30px;
+ font-size: 20px;
+border-bottom: 1px solid rgb(230, 235, 241);
+background:transparent;
+color: #e4dce3;
 }
 .error{
-  color: #da1212;
+  color: #fbf1f1;
 }
 .btnSubmit{
   margin-top: 20px;
  height: 40px;
  width: 150px;
- background: #45c3ed;
+ background: rgb(225, 25, 158);
  border-radius: 10px;
  color: #fff;
  font-weight: bold;
  border: 1px solid #8663cd;
+
 }
 .form{
+  /* padding: 100%; */
+  /* margin-left: 50%; */
+}
+.link{
+  margin-right: 30px;
+  font-size: 25px;
+  color: rgb(245, 235, 236);
+}
+::placeholder{
+  color: rgb(238, 232, 237);
+}
+@media only screen and (max-width: 768px)  {
+  .container{
+    width: 100%;
+  }
+  
   
 }
