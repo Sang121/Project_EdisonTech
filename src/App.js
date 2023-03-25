@@ -17,6 +17,7 @@ import {userState} from 'react';
 
 
 function setToken(userToken){
+
 sessionStorage.setItem('token', JSON.stringify(userToken));
 }
 
@@ -28,11 +29,11 @@ return userToken?.token
 
 
 function App() {
-  // const [token, getToken] = userState();
-
-  // if (!token) {
-  //   return <Login setToken={setToken} />;
-  // }
+   const [token, getToken] = userState();
+ 
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
   const router = createBrowserRouter([
     {
       path: "/",

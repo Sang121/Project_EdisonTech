@@ -5,9 +5,6 @@ import styles from "./login.module.css";
 import logo from '../assets/logo.png'
 import { PropTypes } from "prop-types";
 import {useState} from 'react';
-
-
-
 async function loginUser(credentials) {
   return fetch('http://localhost:8080/login', {
     method: "POST",
@@ -18,9 +15,7 @@ async function loginUser(credentials) {
   })
   .then(data => data.json())
 }
-
-
-const LoginForm = () => {
+ function LoginForm() {
   const initialValues = { email: "", password: "", rememberMe: false };
 
   const validationSchema = Yup.object({
@@ -49,8 +44,9 @@ const handleSubmit = async e => {
     username,
     password
   });
-  setToken(token);
+ // setToken(token);
 }
+
 
   return (
     <div className={styles.container}>
@@ -70,13 +66,13 @@ const handleSubmit = async e => {
          
           <div className={styles.item}>
           
-            <Field type="email" onChange={e => setUserName(e.target.value)} name="email" className={styles.input} />
+            <input type="email" name="email" onchange={e =>setUserName(e.target.value)} className={styles.input} />
             <p className={styles.trong}><ErrorMessage name="email" component="div" className={styles.error} /></p>
             
             <label>Email</label>
           </div>
           <div className={styles.item} >
-            <Field type="password" onChange={e => setPassword(e.target.value)} name="password" className={styles.input} />
+            <Field type="password" name="password" onchange={e =>setPassword(e.target.value)}  className={styles.input} />
             <p className={styles.trong}><ErrorMessage name="password" component="div" className={styles.error} /></p>
             
             <label>Password</label>
@@ -105,5 +101,6 @@ const handleSubmit = async e => {
 LoginForm.protoTypes = {
   setToken: PropTypes.func.isRequired
 };
-export default LoginForm();
+
+export default LoginForm;
   
