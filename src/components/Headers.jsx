@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './headers.css';
 import { FaUserCircle } from 'react-icons/fa';
-import Login from './login';
+
 import logo from '../assets/logo.png';
 
 function Header() {

@@ -1,8 +1,8 @@
 
+import zIndex from "@mui/material/styles/zIndex";
+import { positions } from "@mui/system";
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import Header from "../../components/Headers";
+import logo from '../../assets/logo.png';
 import Footer from "../../components/footer";
 import SignupForm from "../../components/signupForm";
 
@@ -10,8 +10,10 @@ import SignupForm from "../../components/signupForm";
 const Register = () => {
   return (
     <div>
-    <Header/>
-    <SignupForm/>
+    <a href="/">
+            <img src={logo}  className="logo" alt="Logo" />
+          </a>
+    <SignupForm />
    
     <Footer/>
     </div>

@@ -30,7 +30,7 @@
     flex-direction: column;
     cursor: pointer;
     border-radius: 15px ;
-    transition: transform .1s;
+    transition: transform 0.04s;
     z-index: 0;
     background-color:whitesmoke;
     font-style:oblique;
@@ -39,7 +39,7 @@
     border: 1px solid;
     transform: scale(1.05);
     z-index: 3;
-    background-color: aliceblue;
+    background-color: rgb(224, 238, 250);
 }
 .detail{
     padding:10px;
