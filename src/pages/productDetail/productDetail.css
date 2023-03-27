@@ -23,3 +23,12 @@
     object-fit  :cover;
     border-radius: 10px;
 }
+.loader_detail{
+    display: flex;
+
+    left: 20%;
+    top:10%;
+    position: absolute;
+
+
+}

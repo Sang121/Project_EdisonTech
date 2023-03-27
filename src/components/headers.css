@@ -1,29 +1,43 @@
-
-.color{
-  background-color: #daeaef;
-  height: 100px;
-}
-.nav-link:hover{
-  background-color: rgb(245, 245, 245);
-  transform: scale(1.2);
-}
-.nav-link{
-  border-radius: 10px;
-transition: transform .1s;
-}
-.btn-log{
-  color :black;
-}
-.logo{
-  width: 200px;
+.navs{
+  background-color: aliceblue;
   
 }
-.form-control:focus {
-  background-color: red;
+.nav{
+  padding: 10px;
+  width: 100%;
+}
+.btn{
+  transition: transform 0.04s;
+}
+.btn:hover{
+  border: 1px black solid;
+  transform: scale(1.2);
+  background-color: antiquewhite;
 }
 
-.form-control::placeholder {
-  font-size: 0.95rem;
-  color: #aaa;
-  font-style: italic;
+.logo img {
+  width: 300px;
+
+  justify-content: s;
 }
+.btn{
+  font-size: larger;
+}
+.search {
+  width: 60%;
+  
+}
+.p-1{
+width: 100%;
+}
+.titles{
+font-size: small;
+transition: transform 0.04s;
+border-radius: 10px;
+}
+.titles:hover{
+  
+  transform: scale(1.2);
+
+}
+

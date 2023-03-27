@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
 
-
-
+const base_url = 'https://dummyjson.com/products';
 function convertToStars(rating) {
   const starArray = [];
   for (let i = 0; i < 5; i++) {
@@ -25,8 +25,10 @@ function convertToStars(rating) {
   }
   return starArray;
 }
-function ProductList(products) {
+function ProductList() {
   const [index, setIndex] = useState(0);
+  const [products,setProducts]=useState();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((index + 1) % products.length);
@@ -36,11 +38,27 @@ function ProductList(products) {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+ 
+  useEffect(() => {
+ 
+      try {
+        axios.get(base_url)
+          .then(response => {
+            setProducts(response.data.products);
+            setLoading(false);
+          })
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
 
+
+  , []);
   return (
     <div >
       <Carousel className='slide' activeIndex={index} onSelect={handleSelect}>
-        {products.map((product, index) => (
+        {products?.map((product, index) => (
           <Carousel.Item key={index}>
             <Link className='text-black' to={`/product/${product.id}`}>
               <img
@@ -53,7 +71,18 @@ function ProductList(products) {
         ))}
       </Carousel>
       <div className=" container">
-        {products.map((product, index) => (
+
+        { loading ? ( 
+          <div className="loader"> 
+          <BeatLoader
+          size={15}
+          color={"#123abc"}
+          
+        />
+        </div>
+        ):
+          
+          products?.map((product, index) => (
 
           <Link className='text-black' to={`/product/${product.id}`}>
             <div className='cardViewContainer' key={index}><div className="cardView">

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import './headers.css';
 import { FaUserCircle } from 'react-icons/fa';
-
+import { FaShoppingCart } from 'react-icons/fa';
 import logo from '../assets/logo.png';
+import axios from 'axios';
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [products, setProducts] = useState();
   const navigate = useNavigate();
   const handleSubmit = event => {
     event.preventDefault();
@@ -15,82 +17,72 @@ function Header() {
       navigate(`/search/${searchTerm}`);
     }
   };
+  useEffect(() => {
+
+    try {
+      axios.get('https://dummyjson.com/products?limit=10')
+        .then(response => {
+          setProducts(response.data.products);
+          console.log(response.data.products);
+        })
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }, []);
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid color">
-          <a href="/">
-            <img src={logo} className="logo" alt="Logo" />
-          </a>
+    <div className='navs d-flex column'>
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a href="/" className="nav-link active" aria-current="page">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/search/laptop" value={searchTerm} className="nav-link active">
-                  Laptop
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/search/Phone" className="nav-link active">
-                  Phone
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/search/tivi" className="nav-link active">
-                  Tivi
-                </a>
-              </li>
-            </ul>
-
-            <form className="d-flex" onSubmit={handleSubmit}>
-              <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-            <div class="input-group">
-              <input type="search"
-              value={searchTerm}
-              onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập từ bạn cần tìm?"
-               aria-describedby="button-addon1" class="form-control border-0 bg-light"/>
-              <div class="input-group-append">
+      <div className="logo">
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
+      </div>
+      <div className="nav row">
+        <div className=' topnav d-flex justify-content-between'>
+          <Link to="/">
+            <button type="submit" class="btn home-btn"><i class="fa fa-home"> Home</i></button>
+          </Link>
+          <form className="d-flex search" onSubmit={handleSubmit}>
+            <div class="p-1  bg-light rounded rounded-pill shadow-sm mb-4">
+              <div class="input-group">
+                <input type="search"
+                  value={searchTerm}
+                  onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập từ bạn cần tìm?"
+                  aria-describedby="button-addon1" class="form-control border-0 bg-light" />
+                <div class="input-group-append">
                   <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
                 </div>
+              </div>
             </div>
-          </div>
-            </form>
+          </form>
+          <div className="">
+            <Link to="/login">
+              <button type="submit" class="btn login-btn"><i class="fa fa-sign-in"> Tài khoản</i></button>
+            </Link>
 
-            <div className="d-flex align-items-center">
-              <Link to="/login" className="btn-login">
-                <FaUserCircle className="me-1" size={25} />
-                <button className=" btn-log  btn-outline-light top-link-itm-txt me-2 ">
-                  Đăng nhập
-                </button>
-              </Link>
-
-              <Link to="/register">
-                <button type="button" className=" btn-log btn-outline-light    me-2">
-                  Đăng ký
-                </button>
-              </Link>
-            </div>
+            <Link to="/cart">
+              <button type="submit" class="btn cart-btn"><FaShoppingCart /> Giỏ hàng </button>
+            </Link>
           </div>
         </div>
-      </nav>
+
+        <div className='d-flex justify-content-between  column '>
+          {products?.map((product, index) => (
+
+            <Link className='text-black' to={`/product/${product.id}`}>
+              <div className='cardViewContainer' key={index}>
+                
+                  <p className='titles '> {product.title}</p>
+                
+              </div>
+            </Link>
+          ))}
+        </div>
+
+      </div>
     </div>
+
   );
 }
 
