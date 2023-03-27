@@ -1,15 +1,16 @@
 import Header from '../../components/Headers'
 import Footer from '../../components/footer';
-import ProductList from '../../components/ProductList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
 import './productDetail.css';
 const base_url = 'https://dummyjson.com';
 
 function ProductDetail() {
   const [product, setProduct] = useState([])
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
   let { id } = useParams();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ function ProductDetail() {
         axios.get(`${base_url}/products/${id}`)
           .then(response => {
             setProduct(response.data);
+            setLoading(false);
           })
       }
       catch (error) {
@@ -31,10 +33,18 @@ function ProductDetail() {
 
   return (
     <div>
-      <Header />
       <div className="container row">
         <div className="row image col-lg-5 col-md-12 ">
           <div className="col-12">
+          {loading ? ( 
+            <div className="loader_detail"> 
+            <BeatLoader
+            size={15}
+            color={"#123abc"}
+            
+          />
+          </div>
+          ):
             <ul className="nav nav-tabs nav-justified">
               <li className="nav-item ">
                 <img
@@ -83,7 +93,7 @@ function ProductDetail() {
                   />
                 </li>
               </div>
-            </ul>
+            </ul>}
           </div>
         </div>
 
