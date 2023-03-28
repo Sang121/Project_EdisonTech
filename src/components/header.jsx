@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import './headers.css';
-import { FaUserCircle } from 'react-icons/fa';
-import { FaShoppingCart } from 'react-icons/fa';
+import {ShoppingCartSimple}  from "phosphor-react";
 import logo from '../assets/logo.png';
 import axios from 'axios';
+import './headers.css';
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,12 +17,11 @@ function Header() {
     }
   };
   useEffect(() => {
-
     try {
       axios.get('https://dummyjson.com/products?limit=10')
         .then(response => {
           setProducts(response.data.products);
-          console.log(response.data.products);
+      
         })
     }
     catch (error) {
@@ -41,15 +39,15 @@ function Header() {
       <div className="nav row">
         <div className=' topnav d-flex justify-content-between'>
           <Link to="/">
-            <button type="submit" class="btn home-btn"><i class="fa fa-home"> Home</i></button>
+            <button type="submit" class=" btn .btn-header home-btn"><i class="fa fa-home" > Home</i></button>
           </Link>
           <form className="d-flex search" onSubmit={handleSubmit}>
             <div class="p-1  bg-light rounded rounded-pill shadow-sm mb-4">
-              <div class="input-group">
+              <div class="input-group  search-input">
                 <input type="search"
                   value={searchTerm}
-                  onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập từ bạn cần tìm?"
-                  aria-describedby="button-addon1" class="form-control border-0 bg-light" />
+                  onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập sản phẩm bạn cần tìm?"
+                  aria-describedby="button-addon1" class="form-control border-0 rounded-pill bg-light" />
                 <div class="input-group-append">
                   <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
                 </div>
@@ -58,11 +56,11 @@ function Header() {
           </form>
           <div className="">
             <Link to="/login">
-              <button type="submit" class="btn login-btn"><i class="fa fa-sign-in"> Tài khoản</i></button>
+              <button type="submit" class="btn .btn-header login-btn"><i class="fa fa-sign-in"> Tài khoản</i></button>
             </Link>
 
-            <Link to="/cart">
-              <button type="submit" class="btn cart-btn"><FaShoppingCart /> Giỏ hàng </button>
+            <Link to="/checkout">
+              <button type="submit" class="btn .btn-header cart-btn"><ShoppingCartSimple size={30}/></button>
             </Link>
           </div>
         </div>
