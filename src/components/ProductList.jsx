@@ -8,8 +8,7 @@ import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
-
-const base_url = 'https://dummyjson.com/products';
+import { fetchProducts } from '../service/products';
 function convertToStars(rating) {
   const starArray = [];
   for (let i = 0; i < 5; i++) {
@@ -26,9 +25,17 @@ function convertToStars(rating) {
   return starArray;
 }
 function ProductList() {
+
   const [index, setIndex] = useState(0);
-  const [products,setProducts]=useState();
   const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetchProducts().then(data => {
+      setProducts(data);
+      setLoading(false);
+    });
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((index + 1) % products.length);
@@ -38,23 +45,8 @@ function ProductList() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
- 
-  useEffect(() => {
- 
-      try {
-        axios.get(base_url)
-          .then(response => {
-            setProducts(response.data.products);
-            setLoading(false);
-          })
-      }
-      catch (error) {
-        console.log(error);
-      }
-    }
 
 
-  , []);
   return (
     <div >
       <Carousel className='slide' activeIndex={index} onSelect={handleSelect}>
@@ -71,43 +63,42 @@ function ProductList() {
         ))}
       </Carousel>
       <div className=" container">
+        {
+          loading ? (
+            <div className="loader">
+              <BeatLoader
+                size={15}
+                color={"#123abc"}
 
-        { loading ? ( 
-          <div className="loader"> 
-          <BeatLoader
-          size={15}
-          color={"#123abc"}
-          
-        />
-        </div>
-        ):
-          
-          products?.map((product, index) => (
+              />
+            </div>
+          ) :
+            products?.map((product, index) => (
 
-          <Link className='text-black' to={`/product/${product.id}`}>
-            <div className='cardViewContainer' key={index}><div className="cardView">
+              <Link className='text-black' to={`/product/${product.id}`}>
+                <div className='cardViewContainer' key={index}><div className="cardView">
 
-              <img src={product.thumbnail} className="thumbnail" />
-              <div className='detail'>
-                <h5 className='title'> {product.title}  </h5>
-                <p className='des'>{product.description}</p>
-                <div className='rating star'>
-                  {convertToStars(Math.round(product.rating))}
+                  <img src={product.thumbnail} className="thumbnail" />
+                  <div className='detail'>
+                    <h5 className='title'> {product.title}  </h5>
+                    <p className='des'>{product.description}</p>
+                    <div className='rating star'>
+                      {convertToStars(Math.round(product.rating))}
+
+                    </div>
+                    <p className=''> Remaining: {product.stock} </p>
+                    <div className='price'>
+                      <h4 className='new-price'>${(product.price * (100 - product.discountPercentage) / 100).toFixed(2)} </h4>
+                      <p className='old-price'>${product.price}</p>
+                    </div>
+                  </div>
+                </div>
 
                 </div>
-                <p className=''> Remaining: {product.stock} </p>
-                <div className='price'>
-                  <h4 className='new-price'>${(product.price * (100 - product.discountPercentage) / 100).toFixed(2)} </h4>
-                  <p className='old-price'>${product.price}</p>
-                </div>
-              </div>
-            </div>
-
-            </div>
-          </Link>
+              </Link>
 
 
-        ))}
+            ))}
       </div>
     </div>
 
