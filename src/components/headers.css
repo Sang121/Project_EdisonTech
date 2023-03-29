@@ -1,18 +1,15 @@
-.navs{
+.navs {
   background-color: aliceblue;
-  
 }
-.nav{
+.nav {
   padding: 10px;
   width: 100%;
 }
-.btn{
+.btn-header {
   transition: transform 0.04s;
 }
-.btn:hover{
-  border: 1px black solid;
-  transform: scale(1.2);
-  background-color: antiquewhite;
+.btn-header:hover {
+  transform: scale(1.1);
 }
 
 .logo img {
@@ -20,24 +17,22 @@
 
   justify-content: s;
 }
-.btn{
-  font-size: larger;
-}
+
 .search {
   width: 60%;
-  
+  font-style: oblique;
 }
-.p-1{
-width: 100%;
+.search-input {
+  border-radius: 25%;
 }
-.titles{
-font-size: small;
-transition: transform 0.04s;
-border-radius: 10px;
+.p-1 {
+  width: 100%;
 }
-.titles:hover{
-  
+.titles {
+  font-size: small;
+  transition: transform 0.04s;
+  border-radius: 10px;
+}
+.titles:hover {
   transform: scale(1.2);
-
 }
-

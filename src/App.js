@@ -1,45 +1,41 @@
 import { BrowserRouter as Router, Switch, Routes, Route, Link } from "react-router-dom";
-import {
-  createBrowserRouter, RouterProvider
-} from "react-router-dom";
+
 import Home from './pages/Home/Home';
 import './App.css';
-import ProductDetails from './pages/productDetail/productDetail';
+
 import Login from './pages/Login/login';
 import Register from './pages/register/register';
 import ProfileForm from './pages/profile/profile';
-import Search from './pages/Search';
-function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />
-    },
-    {
-      path: '/login',
-      element: <Login />
-    },
-    {
-      path: '/product/:id',
-      element: <ProductDetails/>
-    },
-    {
-      path: '/search/:searchTerm',
-      element: <Search/>
-    },
-    {
-      path: '/register',
-      element: <Register />
-    },
-    {
-      path: '/editProfile',
-      element: <ProfileForm />
-    }
+import ProductSearch from './pages/productSearch/productSearch';
+import Header from "./components/header";
+import Footer from "./components/footer";
+import CartPage from "./pages/cartPage/cartPage"
+import ProductDetail from "./pages/productDetail/productDetail";
 
-  ]);
+
+function App() {
   return (
     <div>
-      <RouterProvider router={router} />
+      <Router>
+      <Header/> 
+        <Routes>
+         
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/product/:id" element={ <ProductDetail  />} />
+          <Route path="/search/:searchTerm" element={<ProductSearch />} />
+          <Route path="/register" element={<Register />} />
+
+          <Route path="/editProfile" element={<ProfileForm />} />
+       
+         <Route path="/cart" element={<CartPage/>} />
+        </Routes>
+        <Footer/>
+      </Router>
+
+
+
+      
     </div>
   );
 }
