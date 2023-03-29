@@ -13,7 +13,7 @@
 }
 
 .logo img {
-  width: 300px;
+  width: 100%;
 
   justify-content: s;
 }
@@ -35,4 +35,10 @@
 }
 .titles:hover {
   transform: scale(1.2);
+}
+
+@media only screen and (max-width: 576px) {
+  .list-title {
+   display: none;
+}
 }

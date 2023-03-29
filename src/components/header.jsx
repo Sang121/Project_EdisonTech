@@ -31,12 +31,12 @@ function Header() {
   return (
     <div className='navs d-flex column'>
 
-      <div className="logo">
+      <div className="logo col-2">
         <Link to="/">
           <img src={logo} alt="logo" />
         </Link>
       </div>
-      <div className="nav row">
+      <div className="nav col-10 row">
         <div className=' topnav d-flex justify-content-between'>
           <Link to="/">
             <button type="submit" class=" btn .btn-header home-btn"><i class="fa fa-home" > Home</i></button>
@@ -65,10 +65,10 @@ function Header() {
           </div>
         </div>
 
-        <div className='d-flex justify-content-between  column '>
+        <div className='d-flex  justify-content-between  column '>
           {products?.map((product, index) => (
 
-            <Link className='text-black' to={`/search/${product.title}`}>
+            <Link className='text-black list-title' to={`/search/${product.title}`}>
               <div className='cardViewContainer' key={index}>
                 
                   <p className='titles '> {product.title}</p>

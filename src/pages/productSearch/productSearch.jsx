@@ -23,10 +23,10 @@ function ProductSearch() {
     <div>
       
       <h2>Search results for "{searchTerm}"</h2>
-      <div className="container row">
+      <div className="search-container row">
         {products && products.length > 0 ? (
           products.map((product, index) => (
-            <Link className='text-black  col-3' to={`/product/${product.id}`}>
+            <Link className='text-black  col-6 col-sm-3 ' to={`/product/${product.id}`}>
                 <div className='cardViewContainer' key={index}><div className="cardView">
 
                   <img src={product.thumbnail} className="thumbnail" />
