@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import ConvertToStars from "../../service/convertStar";
 function ProductSearch() {
   let { searchTerm } = useParams();
   const [products, setProducts] = useState([]);
@@ -25,13 +26,17 @@ function ProductSearch() {
       <div className="container">
         {products && products.length > 0 ? (
           products.map((product, index) => (
-            <Link className='text-black' to={`/product/${product.id}`} key={index}>
-              <div className='cardViewContainer'>
-                <div className="cardView">
+            <Link className='text-black' to={`/product/${product.id}`}>
+                <div className='cardViewContainer' key={index}><div className="cardView">
+
                   <img src={product.thumbnail} className="thumbnail" />
                   <div className='detail'>
-                    <h5 className='title'> {product.title} </h5>
+                    <h5 className='title'> {product.title}  </h5>
                     <p className='des'>{product.description}</p>
+                    <div className='rating star'>
+                      {ConvertToStars(Math.round(product.rating))}
+
+                    </div>
                     <p className=''> Remaining: {product.stock} </p>
                     <div className='price'>
                       <h4 className='new-price'>${(product.price * (100 - product.discountPercentage) / 100).toFixed(2)} </h4>
@@ -39,9 +44,11 @@ function ProductSearch() {
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))
+
+                </div>
+              </Link>
+          )
+          )
         ) : (
           <p>No products found.</p>
         )}
