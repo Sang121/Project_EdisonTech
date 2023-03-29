@@ -3,27 +3,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './productList.css';
 import { Carousel } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
-import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+import ConvertToStars from '../service/convertStar';
 import { Link } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { fetchProducts } from '../service/products';
-function convertToStars(rating) {
-  const starArray = [];
-  for (let i = 0; i < 5; i++) {
-    if (rating >= 1) {
-      starArray.push(<FontAwesomeIcon icon={faStar} className="star" key={i} />);
-      rating -= 1;
-    } else if (rating > 0 && rating < 1) {
-      starArray.push(<FontAwesomeIcon icon={faStarHalfAlt} className="star" key={i} />);
-      rating = 0;
-    } else {
-      starArray.push(<FontAwesomeIcon icon={faStarRegular} className="star" key={i} />);
-    }
-  }
-  return starArray;
-}
+
 function ProductList() {
 
   const [index, setIndex] = useState(0);
@@ -83,7 +67,7 @@ function ProductList() {
                     <h5 className='title'> {product.title}  </h5>
                     <p className='des'>{product.description}</p>
                     <div className='rating star'>
-                      {convertToStars(Math.round(product.rating))}
+                      {ConvertToStars(Math.round(product.rating))}
 
                     </div>
                     <p className=''> Remaining: {product.stock} </p>
@@ -105,6 +89,6 @@ function ProductList() {
   )
 }
 
-export default ProductList
+export default ProductList 
 
 

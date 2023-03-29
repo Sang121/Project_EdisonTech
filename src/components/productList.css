@@ -18,6 +18,7 @@
   width: 100%;
   height: 400px;
   object-fit: cover;
+  drop-shadow:
 }
 .text-black {
   color: black;
@@ -32,6 +33,9 @@
   transition: transform 0.04s;
   z-index: 0;
   background-color: whitesmoke;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
  
 }
 .cardView:hover {

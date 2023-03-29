@@ -59,7 +59,7 @@ function Header() {
               <button type="submit" class="btn .btn-header login-btn"><i class="fa fa-sign-in"> Tài khoản</i></button>
             </Link>
 
-            <Link to="/checkout">
+            <Link to="/cart">
               <button type="submit" class="btn .btn-header cart-btn"><ShoppingCartSimple size={30}/></button>
             </Link>
           </div>
@@ -68,7 +68,7 @@ function Header() {
         <div className='d-flex justify-content-between  column '>
           {products?.map((product, index) => (
 
-            <Link className='text-black' to={`/product/${product.id}`}>
+            <Link className='text-black' to={`/search/${product.title}`}>
               <div className='cardViewContainer' key={index}>
                 
                   <p className='titles '> {product.title}</p>
