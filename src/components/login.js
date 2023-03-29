@@ -5,6 +5,8 @@ import styles from "./login.module.css";
 import logo from '../assets/logo.png'
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { postData } from "./service/request";
+
 
 const LoginForm = () => {
   
@@ -18,11 +20,32 @@ let isLogged=false;
     .required("Mật khẩu không được bỏ trống"),
   });
 
-  const onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert( `Email: ${values.email}\nPassword: ${values.password}\n`);
-      setSubmitting(false);
-    }, 400);
+  const [e, setState] = useState({
+    email: "",
+    password: ""
+  });
+
+  // const handleChange = (e) => {
+  //   const value = e.target.value;
+  //   setState({
+  //     ...state,
+  //     [e.target.name]: value
+  //   });
+  // };
+
+
+  const onSubmit = (e, { setSubmitting }) => {
+    // setTimeout(() => {
+    //   alert( `Email: ${e.email}\nPassword: ${e.password}\n`);
+    //   setSubmitting(false);
+    // }, 400);
+    const userData = {
+      email: e.email,
+      password: e.password
+    };
+    postData("https://dummyjson.com/users/add", userData).then((response) => {
+      console.log(123,e);
+    });
   };
 
 
@@ -36,6 +59,7 @@ let isLogged=false;
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      // onChange={handleChange}
     >
       {({ isSubmitting }) => (
 
