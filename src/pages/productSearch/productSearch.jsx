@@ -11,7 +11,7 @@ function ProductSearch() {
         .get(`https://dummyjson.com/products/search?q=${searchTerm}`)
         .then(response => {
           setProducts(response.data.products);
-          console.log(response.data.products);
+         
         })
         .catch(error => {
           console.log(error);
@@ -23,10 +23,10 @@ function ProductSearch() {
     <div>
       
       <h2>Search results for "{searchTerm}"</h2>
-      <div className="container">
+      <div className="container row">
         {products && products.length > 0 ? (
           products.map((product, index) => (
-            <Link className='text-black' to={`/product/${product.id}`}>
+            <Link className='text-black  col-3' to={`/product/${product.id}`}>
                 <div className='cardViewContainer' key={index}><div className="cardView">
 
                   <img src={product.thumbnail} className="thumbnail" />
