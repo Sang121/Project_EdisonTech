@@ -1,8 +1,9 @@
 .container {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 25% 25% 25% 25%;
   column-gap: 15px;
   row-gap: 25px;
+
 }
 .slide {
   height: 400px;
@@ -18,14 +19,14 @@
   width: 100%;
   height: 400px;
   object-fit: cover;
-  drop-shadow:
+ 
 }
 .text-black {
   color: black;
   text-decoration: none;
 }
 .cardView {
-  height: 400px;
+
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -98,16 +99,16 @@
 @media only screen and (max-width: 1200px) {
   .container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33.3% 33.3% 33.3%;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .container {
     display: grid;
-    grid-template-columns: auto auto;
-    grid-column-gap: 15px;
-    grid-row-gap: 25px;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
   }
 }
 
@@ -115,7 +116,7 @@
   .container {
     display: grid;
     grid-template-columns: auto;
-    grid-column-gap: 15px;
-    grid-row-gap: 25px;
+    grid-column-gap: 5px;
+    grid-row-gap: 10px;
   }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import ConvertToStars from "../../service/convertStar";
+import '../../components/productList.css'
 function ProductSearch() {
   let { searchTerm } = useParams();
   const [products, setProducts] = useState([]);
@@ -20,14 +21,14 @@ function ProductSearch() {
   }, [searchTerm]);
 
   return (
-    <div>
+    <div className="" >
       
       <h2>Search results for "{searchTerm}"</h2>
-      <div className="search-container row">
+      <div className="container ">
         {products && products.length > 0 ? (
           products.map((product, index) => (
-            <Link className='text-black  col-6 col-sm-3 ' to={`/product/${product.id}`}>
-                <div className='cardViewContainer' key={index}><div className="cardView">
+            <Link className='text-black ' to={`/product/${product.id}`}>
+                <div className='cardViewContaner' key={index}><div className="cardView">
 
                   <img src={product.thumbnail} className="thumbnail" />
                   <div className='detail'>

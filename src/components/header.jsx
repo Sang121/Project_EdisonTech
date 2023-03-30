@@ -38,8 +38,8 @@ function Header() {
       </div>
       <div className="nav col-10 row">
         <div className=' topnav d-flex justify-content-between'>
-          <Link to="/">
-            <button type="submit" class=" btn .btn-header home-btn"><i class="fa fa-home" > Home</i></button>
+          <Link to="/" className='home-btn'>
+            <button type="submit" class=" btn .btn-header "><i class="fa fa-home" > Home</i></button>
           </Link>
           <form className="d-flex search" onSubmit={handleSubmit}>
             <div class="p-1  bg-light rounded rounded-pill shadow-sm mb-4">
@@ -54,7 +54,7 @@ function Header() {
               </div>
             </div>
           </form>
-          <div className="">
+          <div className=" login-cart">
             <Link to="/login">
               <button type="submit" class="btn .btn-header login-btn"><i class="fa fa-sign-in"> Tài khoản</i></button>
             </Link>
