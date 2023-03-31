@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { base_url } from './base-url';
 export const fetchProducts = () => {
+    
     return axios.get(`${base_url}/products?limit=100`)
         .then(response => {
             return response.data.products;
