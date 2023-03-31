@@ -7,18 +7,49 @@ import ConvertToStars from '../service/convertStar';
 import { Link } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import { fetchProducts } from '../service/products';
+import { base_url } from '../service/base-url';
 
 function ProductList() {
-
+  const [totalCount, setTotalCount] = useState(0)
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
+  const getProducts = async (pg = page, pgSize = pageSize) => {
+    try {
+
+      const res = await axios.get(`${base_url}/products?limit=${100}&page=${pg}`);
+      const startIdx = (pg - 1) * pgSize;
+      const endIdx = pg * pgSize;
+      setProducts(res.data.products.slice(startIdx, endIdx));
+      setTotalCount(res.data.total)
+
+      
+    }
+    catch (errors) {
+      console.log("Call API products errors:", errors);
+      setLoading(false)
+    }
+  };
+
   useEffect(() => {
-    fetchProducts().then(data => {
-      setProducts(data);
-      setLoading(false);
-    });
-  }, []);
+
+    getProducts(page, pageSize);
+    setLoading(false);
+
+  }, [page, pageSize]);
+
+  const prePage = async () => {
+    const pg = page === 1 ? 1 : page - 1;
+    setPage(pg);
+  };
+
+  const nextPage = async () => {
+    const pg = page + 1;
+    setPage(pg);
+  };
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -83,12 +114,33 @@ function ProductList() {
 
 
             ))}
+       
       </div>
+      <div className='page'>
+      <button onClick={prePage} disabled={page === 1}>Previous</button>
+
+      {Array.from({ length: Math.min(Math.ceil(totalCount / pageSize)) }, (v, i) => i + 1).map((pageNumber) => (
+        <button key={pageNumber} onClick={() => setPage(pageNumber)}>{pageNumber}</button>
+      ))}
+
+      <button onClick={nextPage} disabled={totalCount <= page * pageSize}>Next</button>
+      <br />
+      <label>
+        Page Size:
+        <input
+          type="number"
+          value={pageSize}
+          onChange={(e) => setPageSize(parseInt(e.target.value))}
+        />
+      </label>
+    </div>
+
+
     </div>
 
   )
 }
 
-export default ProductList 
+export default ProductList
 
 
