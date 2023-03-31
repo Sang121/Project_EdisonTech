@@ -25,9 +25,7 @@ function ProductList() {
       setProducts(res.data.products.slice(startIdx, endIdx));
       setTotalCount(res.data.total)
 
-      console.log(pg);
-      console.log(pgSize);
-      console.log(res.data.products.slice(startIdx, endIdx));
+      
     }
     catch (errors) {
       console.log("Call API products errors:", errors);
