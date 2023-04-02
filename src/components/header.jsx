@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import {ShoppingCartSimple}  from "phosphor-react";
+import { ShoppingCartSimple } from "phosphor-react";
 import logo from '../assets/logo.png';
 import axios from 'axios';
 import './headers.css';
@@ -9,6 +9,8 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState();
   const navigate = useNavigate();
+  let islogged = localStorage.getItem('islogged')
+  console.log(islogged);
   const handleSubmit = event => {
     event.preventDefault();
     if (searchTerm) {
@@ -21,27 +23,32 @@ function Header() {
       axios.get('https://dummyjson.com/products?limit=10')
         .then(response => {
           setProducts(response.data.products);
-      
+
         })
     }
     catch (error) {
       console.log(error);
     }
   }, []);
+  const Logout = () => {
+    localStorage.removeItem('islogged');
+    navigate('/login')
+
+  }
   return (
     <div className='navs d-flex column'>
-    <button   class="btn navbar-toggler-icon sidebar_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">☰</button>
+      <button class="btn navbar-toggler-icon sidebar_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">☰</button>
 
-    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Account</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body  ">
+          <a href="/editProfile" class="btn item"> Edit account infomation</a>
+          <button onClick={Logout} className=' btn btn_logout item'> Log out</button>
+        </div>
       </div>
-      <div class="offcanvas-body  ">
-<a href="/editProfile" class="btn item"> Edit account infomation</a>
-<a href='' className=' btn btn_logout item'> Log out</a>
-      </div>
-    </div>
       <div className="logo col-4 col-sm-2">
         <Link to="/">
           <img src={logo} alt="logo" />
@@ -71,7 +78,7 @@ function Header() {
             </Link>
 
             <Link to="/cart">
-              <button type="submit" class="btn .btn-header cart-btn"><ShoppingCartSimple size={30}/></button>
+              <button type="submit" class="btn .btn-header cart-btn"><ShoppingCartSimple size={30} /></button>
             </Link>
           </div>
         </div>
@@ -81,9 +88,9 @@ function Header() {
 
             <Link className='text-black list-title' to={`/search/${product.title}`}>
               <div className='cardViewContainer' key={index}>
-                
-                  <p className='titles '> {product.title}</p>
-                
+
+                <p className='titles '> {product.title}</p>
+
               </div>
             </Link>
           ))}
