@@ -30,8 +30,19 @@ function Header() {
   }, []);
   return (
     <div className='navs d-flex column'>
+    <button   class="btn navbar-toggler-icon sidebar_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">☰</button>
 
-      <div className="logo col-2">
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Account</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body  ">
+<a href="/editProfile" class="btn item"> Edit account infomation</a>
+<a href='' className=' btn btn_logout item'> Log out</a>
+      </div>
+    </div>
+      <div className="logo col-4 col-sm-2">
         <Link to="/">
           <img src={logo} alt="logo" />
         </Link>

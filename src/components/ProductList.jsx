@@ -25,7 +25,7 @@ function ProductList() {
       setProducts(res.data.products.slice(startIdx, endIdx));
       setTotalCount(res.data.total)
 
-      
+
     }
     catch (errors) {
       console.log("Call API products errors:", errors);
@@ -64,6 +64,7 @@ function ProductList() {
 
   return (
     <div >
+      
       <Carousel className='slide' activeIndex={index} onSelect={handleSelect}>
         {products?.map((product, index) => (
           <Carousel.Item key={index}>
@@ -94,6 +95,7 @@ function ProductList() {
                 <div className='cardViewContainer' key={index}><div className="cardView">
 
                   <img src={product.thumbnail} className="thumbnail" />
+                  <p className='brand'>{product.brand}</p>
                   <div className='detail'>
                     <h5 className='title'> {product.title}  </h5>
                     <p className='des'>{product.description}</p>
@@ -114,26 +116,26 @@ function ProductList() {
 
 
             ))}
-       
+
       </div>
       <div className='page'>
-      <button onClick={prePage} disabled={page === 1}>Previous</button>
+        <button onClick={prePage} disabled={page === 1}>Previous</button>
 
-      {Array.from({ length: Math.min(Math.ceil(totalCount / pageSize)) }, (v, i) => i + 1).map((pageNumber) => (
-        <button key={pageNumber} onClick={() => setPage(pageNumber)}>{pageNumber}</button>
-      ))}
+        {Array.from({ length: Math.min(Math.ceil(totalCount / pageSize)) }, (v, i) => i + 1).map((pageNumber) => (
+          <button key={pageNumber} onClick={() => setPage(pageNumber)}>{pageNumber}</button>
+        ))}
 
-      <button onClick={nextPage} disabled={totalCount <= page * pageSize}>Next</button>
-      <br />
-      <label>
-        Page Size:
-        <input
-          type="number"
-          value={pageSize}
-          onChange={(e) => setPageSize(parseInt(e.target.value))}
-        />
-      </label>
-    </div>
+        <button onClick={nextPage} disabled={totalCount <= page * pageSize}>Next</button>
+        <br />
+        <label>
+          Page Size:
+          <input
+            type="number"
+            value={pageSize}
+            onChange={(e) => setPageSize(parseInt(e.target.value))}
+          />
+        </label>
+      </div>
 
 
     </div>

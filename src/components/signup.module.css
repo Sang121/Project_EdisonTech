@@ -4,19 +4,15 @@
   font-family: 'Times New Roman', Times, serif;
   text-align: center;
 
- background: url('signup3.png') ;
  display: flex;
  flex-direction: column;
 justify-content: center;
 align-items: center;
 background-size:cover;
 
-
- 
- 
 }
 .title {
- color: #d51097;
+
 text-align: center;
 margin-bottom: 20px;
 }
@@ -25,7 +21,9 @@ margin-bottom: 20px;
   margin-top: 15px;
   margin-bottom: -5px;
 
+
 }
+
 .input {
   display:flex;
  border: none;
@@ -35,20 +33,26 @@ margin-bottom: 20px;
  font-size: 20px;
 border-bottom: 1px solid rgb(230, 235, 241);
 background:transparent;
-color: #e4dce3;
+color: black;
 }
 .error{
-  color: #fbf1f1;
+  color: black;
 }
 .btnSubmit{
   margin-top: 20px;
  height: 40px;
  width: 150px;
- background: rgb(225, 25, 158);
+ background:cornflowerblue;
  border-radius: 10px;
  color: #fff;
  font-weight: bold;
  border: 1px solid #8663cd;
+transition: 0.3;
+}
+
+
+.btnSubmit:active{
+  transform: scale(1.1);
 
 }
 .form{
@@ -56,16 +60,21 @@ color: #e4dce3;
   /* margin-left: 50%; */
   padding: 2%;
   /* margin-left: 50%; */
-  background-color:#bd54af;
+
   border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 .link{
   margin-right: 30px;
-  font-size: 25px;
-  color: rgb(245, 235, 236);
+  font-size: 15px;
+  color: black;
+  text-decoration: none;
 }
 ::placeholder{
-  color: rgb(238, 232, 237);
+  color:black;
+  font-size: 15px;
+  font-family: 'Times New Roman';
 }
 @media only screen and (max-width: 768px)  {
   .container{

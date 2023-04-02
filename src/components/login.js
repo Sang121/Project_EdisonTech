@@ -56,7 +56,7 @@ let isLogged=false;
             
             <label>Password</label>
           </div>
-          <div>
+          <div className="margin-10">
             <button type="submit" disabled={isSubmitting}>
         <span></span>
         <span></span>
@@ -64,7 +64,7 @@ let isLogged=false;
         <span></span>
         Login
       </button>
-      <Link className={styles.link} to="/register" >Register</Link>
+      <Link className={styles.btn_reg}to="/register" >Create an account</Link>
       </div>
         </Form>
       )}
