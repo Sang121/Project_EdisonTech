@@ -12,6 +12,7 @@
   border-radius: 15px;
   margin-bottom: 10px;
   object-fit: cover;
+  margin-top: 10px;
 }
 .img-slide {
   display: flex;
@@ -56,12 +57,24 @@
   -webkit-line-clamp: 3;
   line-height: 1.4rem;
   -webkit-line-clamp: 3;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 .cardView > img {
   height: 170px;
   object-fit: cover;
   width: 100%;
   border-radius: 15px 15px 0 0;
+}
+.brand{
+  font-family: oblique;
+  background-image: linear-gradient(to right,#F8FFAE ,#43C6AC);
+
+  width: 120px;
+  padding:5px;
+  font-size: 17px;
+  position: absolute;
+border-radius: 15px 0 0 0;
 }
 .price {
   display: flex;
@@ -119,21 +132,50 @@
     grid-template-columns: 33.3% 33.3% 33.3%;
   }
 }
+.offcanvas-body .item{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  display: flex;
 
+  align-items: center;
+}
+.sidebar_btn{
+  position: absolute;
+ z-index: 1;
+  top: 90px;
+  display: flex;
+  
+justify-content: center;;
+  align-items: center;
+
+}
 @media only screen and (max-width: 768px) {
   .container {
     display: grid;
     grid-template-columns: 50% 50%;
+  
     grid-column-gap: 10px;
     grid-row-gap: 15px;
   }
-}
-
-@media only screen and (max-width: 420px) {
-  .container {
-    display: grid;
-    grid-template-columns: auto;
-    grid-column-gap: 5px;
-    grid-row-gap: 10px;
+  .des{
+    display: none;
+  }
+  .cardView > img { 
+    height: 100px;
+  }
+  .cardView{
+    height: 230px;
+  }
+  .star{
+  display: none;}
+  .slide{
+    height: 300px;
+  }
+  .img-slide{
+    height: 300px;
   }
 }
+
+

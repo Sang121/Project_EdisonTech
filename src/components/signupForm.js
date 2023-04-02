@@ -79,9 +79,9 @@ const SignupForm = () => {
               component="div"
               className={styles.error}
             /> </p>
-            <Link className={styles.link} to="/login" >Login</Link>
+            <Link className={styles.link} to="/login" > Already have an account?</Link>
           <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
-          SIGN UP
+          Sing Up
           </button>
         
         </Form>
