@@ -23,12 +23,24 @@ const SignupSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Mật khẩu nhập lại không trùng khớp")
     .required("Bạn cần nhập lại mật khẩu"),
 });
-let users=[];
+// let admin=[{
+//   id: "1",
+//   username: "admin",
+//   password: "admin123",
+//   phone: "0987654321",
+//   address: "Địa chỉ",
+//   name: "Nguyễn Văn",
+//   email: "envkt@gmail.com",
+// }
+// ]
+// localStorage.setItem("users",JSON.stringify(admin))
+let users=JSON.parse(localStorage.getItem("users")) || [];
+console.log("1",users);
 const onSubmit=(values, { setSubmitting }) =>{
-  setSubmitting(false)
+ console.log(values,setSubmitting);
   setTimeout(() => {
     alert(JSON.stringify(values, null, 2));
-    const userlogin ={
+    const newUser ={
       username: values.username,
       password: values.password,
      
@@ -37,12 +49,15 @@ const onSubmit=(values, { setSubmitting }) =>{
       name:values.name,
       email:values.email
      }
-     users.push(userlogin)
+     users.push(values)
+  
      localStorage.setItem("users",JSON.stringify(users));
+     window.location.hre="/login"
    
   }, 400);
   setSubmitting=true;
 }
+
 const SignupForm = () => {
   return (
     <div className={styles.container}>
@@ -58,12 +73,13 @@ const SignupForm = () => {
         password: "",
         confirmPassword: "",
       }}
-      validationSchema={SignupSchema}
       onSubmit={onSubmit}
+      validationSchema={SignupSchema}
+      
     >
       {({ isSubmitting }) => (
       
-        <Form className={styles.form}>
+        <Form  className={styles.form}>
           <div >
             <label htmlFor="name"></label>
             <Field type="text" placeholder='Name' name="name" className={styles.input} />

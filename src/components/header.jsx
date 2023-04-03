@@ -33,6 +33,7 @@ function Header() {
   const Logout = () => {
     if (islogged){
       localStorage.removeItem('islogged');
+      localStorage.removeItem('userlogin');
     alert("Logout Successful")
     window.location.href="/";
     }

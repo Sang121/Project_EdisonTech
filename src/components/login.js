@@ -4,18 +4,17 @@ import * as Yup from "yup";
 import styles from "./login.module.css";
 import logo from '../assets/logo.png'
 import { BrowserRouter, Link, useNavigate } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+
 
 const LoginForm = () => {
 
   const initialValues = { username: "", password: "" };
-  const [users, setUsers] = useState([]);
+
   const navigate = useNavigate();
   let isSuccessful = false;
-  useEffect(() => {
-    setUsers(JSON.parse(localStorage.getItem("users")));
-  }, [isSuccessful]);
+ 
+    const users =JSON.parse(localStorage.getItem("users"))||[];
+ console.log("a",users);
 
   const validationSchema = Yup.object({
     username: Yup.string().required("Username không được bỏ trống"),
@@ -23,15 +22,16 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values, { setSubmitting }) => {
-    
-    users.forEach(user=>{
+ 
+   
+    users.forEach((user) => {
   
       if(
         user.username === values.username && user.password === values.password)
         {        
         isSuccessful = true;
         localStorage.setItem('islogged', JSON.stringify(isSuccessful));
-     
+        localStorage.setItem('userlogin', JSON.stringify(user))
       }
       //   phone:user.phone,
       //   address:user.address.address,
@@ -56,8 +56,8 @@ const LoginForm = () => {
   };
 
   return (
-   <div>
-   {isSuccessful ? <BrowserRouter to="/" /> : 
+   
+  
     <div className={styles.container}>
     
       <div className={styles.logo}>
@@ -116,8 +116,7 @@ const LoginForm = () => {
         )}
       </Formik>
     </div>
-        }
-    </div>
+       
   );
 };
 

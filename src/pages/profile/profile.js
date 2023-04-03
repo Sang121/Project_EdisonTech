@@ -3,6 +3,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+
 const ProfileSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, "Tên của bạn phải có ít nhất 2 ký tự")
@@ -21,96 +22,95 @@ const ProfileSchema = Yup.object().shape({
   address: Yup.string()
     .required("Địa chỉ không được bỏ trống"),
 });
+const userLoggedIn = JSON.parse(localStorage.getItem("userlogin"));
+
+
+const onSubmit=(values, { setSubmitting }) => {
+    setSubmitting(false);
+    const storedUsers = JSON.parse(localStorage.getItem('users'));
+    const index = storedUsers.findIndex(user => user.username === userLoggedIn.username && user.phone === userLoggedIn.phone);
+
+
+    if (index !== -1) {
+      storedUsers.splice(index, 1);
+      storedUsers.push(values);
+      localStorage.setItem('users', JSON.stringify(storedUsers));
+    }
+
+  
+    // Cập nhật lại thông tin người dùng đang đăng nhập trong Local Storage
+
+  
+    alert("Change information success")
+    localStorage.setItem("userlogin",JSON.stringify(values));
+
+}
 
 const ProfileForm = () => {
   return (
-    <div >
-    {/* className={styles.container} */}
+    <div className={styles.container} >
 
-    <h1 className={styles.title}>PROFILE </h1>
+
+
       <h2 className={styles.h} >General information</h2>
-    <Formik
-      initialValues={{
-        name: "",
-        email: "",
-        phone: "",
-        password: "",
-        address: "",
-      }}
-      validationSchema={ProfileSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-       
-        <Form className={styles.hhh}>
-            <tr>
-<td>
-
-          <p className={styles.khung1}>User name </p>
-          
-            <Field type="text" name="name" className={styles.input1} />
-            <ErrorMessage name="username" component="div" className={styles.error} />
-          
-</td>
-<td>
-
-          <p className={styles.khung1}>Password </p>
-          
-            
-            <Field type="password"  name="password" className={styles.input2} />
-            <ErrorMessage name="password" component="div" className={styles.error} />
-          
-</td>
-            </tr>
-            <tr>
-<td>
-
-          <p className={styles.khung}> Email</p>
+      <Formik
+        initialValues={{
+          name: `${userLoggedIn.name}`,
+          email: `${userLoggedIn.email}`,
+          phone: `${userLoggedIn.phone}`,
+          address: `${userLoggedIn.address}`,
+          username: `${userLoggedIn.username}`,
         
-            <Field type="email"  name="email" className={styles.input1} />
-            <ErrorMessage name="email" component="div" className={styles.error} />
+          password: "",
           
-          
-</td>
-<td>
-          <p className={styles.khung}>Phone </p>
+        }}
+        validationSchema={ProfileSchema}
+        onSubmit={onSubmit}
+      >
+        {({ isSubmitting }) => (
 
-            <Field type="text" name="phone" className={styles.input2} />
-            <ErrorMessage name="phone" component="div" className={styles.error} />
-</td>
-            
-          
-            </tr>
-          
-          <p className={styles.khung}>Address </p>
-        
-            
-            <Field type="password" name="address" className={styles.input} />
-            <ErrorMessage
-              name="address"
-              component="div"
-              className={styles.error}
-            />
-          
-          <p>  </p> 
-          <tr>
-            <button className={styles.btnBack}> <a href="/"> Back</a></button>
-          </tr>
-          <tr>  
-          <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
-          SAVE
-          </button>
-         
+          <Form className={styles.formProfile}>
+            <table>
+              <tr className={styles.item}>
+                <th> <label htmlFor="name">Name</label> </th>
+                <th>  <Field type="text" placeholder='Name' name="name" className={styles.input} /></th>
+              </tr>
+              <p className={styles.khung}> <ErrorMessage name="name" component="div" className={styles.error} /> </p>
+              <tr className={styles.item}>
+              <th> <label htmlFor="email">Email</label></th>
+              <th> <Field type="text" placeholder='Email' name="email" className={styles.input} /></th>
+              </tr>
+              <p className={styles.khung}>  <ErrorMessage name="email" component="div" className={styles.error} /></p>
+              <tr className={styles.item}>
+              <th> <label htmlFor="phone">Phone number</label></th>
+              <th> <Field type="text" placeholder='Phone' name="phone" className={styles.input} /></th>
 
-          </tr>
-        </Form>
-      )}
-    </Formik>
+              </tr>
+
+              <tr className={styles.item}>
+              <th> <label htmlFor="address">Address</label></th>
+              <th> <Field type="text" placeholder='Address' name="address" className={styles.input} /></th>
+
+              </tr>
+              <tr className={styles.item}>
+              <th> <label htmlFor="username">UserName</label></th>
+              <th> <Field type="text" placeholder='UserName' name="username" className={styles.input} /></th>
+
+              </tr>
+              <tr className={styles.item}>
+              <th>  <label htmlFor="password">Password</label></th>
+              <th>  <Field type="password" placeholder='Password' name="password" className={styles.input} /></th>
+
+              </tr>
+              <p className={styles.khung}><ErrorMessage name="password" component="div" className={styles.error} /> </p>
+              
+              <td> <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
+                Save
+              </button></td>
+            </table>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
