@@ -23,26 +23,43 @@ const SignupSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Mật khẩu nhập lại không trùng khớp")
     .required("Bạn cần nhập lại mật khẩu"),
 });
-
+let users=[];
+const onSubmit=(values, { setSubmitting }) =>{
+  setSubmitting(false)
+  setTimeout(() => {
+    alert(JSON.stringify(values, null, 2));
+    const userlogin ={
+      username: values.username,
+      password: values.password,
+     
+      phone:values.phone,
+      address:values.address,
+      name:values.name,
+      email:values.email
+     }
+     users.push(userlogin)
+     localStorage.setItem("users",JSON.stringify(users));
+   
+  }, 400);
+  setSubmitting=true;
+}
 const SignupForm = () => {
   return (
     <div className={styles.container}>
     <h1 className={styles.title}>REGISTER</h1>
     <Formik
-      initialValues={{  
+      initialValues={
+        {
         name: "",
         email: "",
         phone: "",
+       adress:"",
+       username: "",
         password: "",
         confirmPassword: "",
       }}
       validationSchema={SignupSchema}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
-      }}
+      onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
       
@@ -62,7 +79,17 @@ const SignupForm = () => {
             <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
           
           </div>
-          <p className={styles.khung}> <ErrorMessage name="phone" component="div" className={styles.error} /> </p>
+          
+        <div>
+        <label htmlFor="address"></label>
+        <Field type="text" placeholder='Address' name="address" className={styles.input} />
+      
+      </div>
+     <div>
+      <label htmlFor="username"></label>
+      <Field type="text" placeholder='UserName' name="username" className={styles.input} />
+    
+    </div>
           <div>
             <label htmlFor="password"></label>
             <Field type="password" placeholder='Password' name="password" className={styles.input} />

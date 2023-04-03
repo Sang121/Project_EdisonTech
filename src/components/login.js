@@ -8,21 +8,13 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 const LoginForm = () => {
+
   const initialValues = { username: "", password: "" };
-  const [dummyLoginData, setDummyLoginData] = useState([]);
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   let isSuccessful = false;
   useEffect(() => {
-    const fetchDummyLoginData = async () => {
-      try {
-        const response = await axios.get("https://dummyjson.com/users");
-        setDummyLoginData(response.data.users);
-     
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchDummyLoginData();
+    setUsers(JSON.parse(localStorage.getItem("users")));
   }, [isSuccessful]);
 
   const validationSchema = Yup.object({
@@ -32,19 +24,30 @@ const LoginForm = () => {
 
   const onSubmit = (values, { setSubmitting }) => {
     
-    dummyLoginData.forEach(user => {
-      if (
-        user.username === values.username &&
-        user.password === values.password
-      ) {
+    users.forEach(user=>{
+  
+      if(
+        user.username === values.username && user.password === values.password)
+        {        
         isSuccessful = true;
+        localStorage.setItem('islogged', JSON.stringify(isSuccessful));
+     
       }
-    });
+      //   phone:user.phone,
+      //   address:user.address.address,
+      //   name:user.firstName + ' ' + user.lastName,
+      //   email:user.email
+      //  }
+      //  localStorage.setItem("user", JSON.stringify(userlogin));
+      //  console.log(localStorage.getItem("user"));
+
+      });
+   
     if (isSuccessful) {
       alert("Đăng nhập thành công");
-      navigate('/');
-      localStorage.setItem('islogged', JSON.stringify(isSuccessful));
+     
     
+      navigate('/');
 
     } else {
       alert("Đăng nhập thất bại");

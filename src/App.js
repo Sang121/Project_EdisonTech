@@ -12,7 +12,7 @@ import Footer from "./components/footer";
 import CartPage from "./pages/cartPage/cartPage"
 import ProductDetail from "./pages/productDetail/productDetail";
 
-
+let islogged=localStorage.getItem('islogged');
 function App() {
   return (
     <div>
@@ -21,12 +21,13 @@ function App() {
         <Routes>
          
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          
+          <Route path="/login" element={ <Login />} />
           <Route path="/product/:id" element={ <ProductDetail  />} />
           <Route path="/search/:searchTerm" element={<ProductSearch />} />
           <Route path="/register" element={<Register />} />
-
-          <Route path="/editProfile" element={<ProfileForm />} />
+          <Route path="/editProfile" element={ <ProfileForm/>} />
+          
        
          <Route path="/cart" element={<CartPage/>} />
         </Routes>
