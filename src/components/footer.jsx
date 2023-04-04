@@ -15,10 +15,10 @@ function Footer
       </div>
       <div className='line2'>
       <Link to="https://www.facebook.com/Libra245" className='home-btn'>
-            <button type="submit" class=" btn .btn-header "><i class="fa fa-facebook" > Facebook</i></button>
+            <button type="submit" class=" btn  "><i class="fa fa-facebook" > Facebook</i></button>
           </Link>
           <Link to="https://www.instagram.com/imsn.02/" className='home-btn'>
-            <button type="submit" class=" btn .btn-header "><i class="fa fa-instagram" > Instagram</i></button>
+            <button type="submit" class=" btn "><i class="fa fa-instagram" > Instagram</i></button>
           </Link>
       </div>
       <div className='line3'>
