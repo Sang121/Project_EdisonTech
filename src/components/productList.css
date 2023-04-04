@@ -69,12 +69,12 @@
 .brand{
   font-family: oblique;
   background-image: linear-gradient(to right,#F8FFAE ,#43C6AC);
-
+  margin-top: 10px;
   width: 120px;
   padding:5px;
   font-size: 17px;
   position: absolute;
-border-radius: 15px 0 0 0;
+
 }
 .price {
   display: flex;
