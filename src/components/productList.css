@@ -38,7 +38,7 @@
 }
 .cardView:hover {
   border: 1px solid;
-  transform: scale(1.05);
+  transform: translateY(-5px);
   z-index: 3;
   background-color: rgb(224, 238, 250);
 }

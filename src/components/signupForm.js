@@ -5,15 +5,19 @@ import * as Yup from "yup";
 import { Link, Navigate } from "react-router-dom";
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
+  fullName: Yup.string()
+    .min(5, "Tên của bạn phải có ít nhất 5 ký tự")
+    .max(50, "Tên của bạn không được dài hơn 50 ký tự")
+    .required("Vui lòng nhập tên của bạn"),
+    username: Yup.string()
     .min(2, "Tên của bạn phải có ít nhất 2 ký tự")
     .max(50, "Tên của bạn không được dài hơn 50 ký tự")
     .required("Vui lòng nhập tên người dùng"),
   email: Yup.string()
     .email("Email không hợp lệ")
-    .required("Vui lòng nhập địa chỉ email"),
+    .required("Vui lòng nhập địa chỉ email"), 
   phone: Yup.string()
-    .matches(/^[0-9]{10}$/, "Vui lòng nhập số điện thoại hợp lệ")
+    .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, "Vui lòng nhập số điện thoại hợp lệ")
     .required("Vui lòng nhập số điện thoại"),
   password: Yup.string()
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
@@ -43,7 +47,7 @@ const onSubmit = (values, { setSubmitting }) => {
   let newUsers = {
     username: values.username,
     password: values.password,
-    name: values.name,
+    fullName: values.fullName,
     phone: values.phone,
 
     email: values.email,
@@ -53,7 +57,8 @@ const onSubmit = (values, { setSubmitting }) => {
   users.push(newUsers);
 
   localStorage.setItem("users", JSON.stringify(users));
-window.location.href = "/login";
+  alert("Create successfully")
+  window.location.href = "/login";
 
 
   setSubmitting(false);
@@ -66,7 +71,7 @@ const SignupForm = () => {
       <Formik
         initialValues={
           {
-            name: "",
+            fullName: "",
             email: "",
             phone: "",
             adress: "",
@@ -75,63 +80,64 @@ const SignupForm = () => {
             confirmPassword: "",
           }}
         onSubmit={onSubmit}
-        validator={() => ({})}
+
+        validationSchema={SignupSchema}
 
 
       >
-        {({ isSubmitting }) => (
+        <Form
+          className={styles.form}>
+          <div >
+            <label htmlFor="fullName"></label>
+            <Field type="text" placeholder='FullName' name="fullName" className={styles.input} />
+          </div>
+          <p className={styles.khung}> <ErrorMessage name="fullName" component="div" className={styles.error} /> </p>
+          <div>
+            <label htmlFor="email"></label>
+            <Field type="text" placeholder='Email' name="email" className={styles.input} />
+          </div>
+          <p className={styles.khung}>  <ErrorMessage name="email" component="div" className={styles.error} /></p>
+          <div>
+            <label htmlFor="phone"></label>
+            <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
+            <p className={styles.khung}>  <ErrorMessage name="phone" component="div" className={styles.error} /></p>
 
-          <Form
-            className={styles.form}>
-            <div >
-              <label htmlFor="name"></label>
-              <Field type="text" placeholder='Name' name="name" className={styles.input} />
-            </div>
-            <p className={styles.khung}> <ErrorMessage name="name" component="div" className={styles.error} /> </p>
-            <div>
-              <label htmlFor="email"></label>
-              <Field type="text" placeholder='Email' name="email" className={styles.input} />
-            </div>
-            <p className={styles.khung}>  <ErrorMessage name="email" component="div" className={styles.error} /></p>
-            <div>
-              <label htmlFor="phone"></label>
-              <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
+          </div>
 
-            </div>
+          <div>
+            <label htmlFor="address"></label>
+            <Field type="text" placeholder='Address' name="address" className={styles.input} />
 
-            <div>
-              <label htmlFor="address"></label>
-              <Field type="text" placeholder='Address' name="address" className={styles.input} />
+          </div>
+          <div>
+            <label htmlFor="username"></label>
+            <Field type="text" placeholder='UserName' name="username" className={styles.input} />
 
-            </div>
-            <div>
-              <label htmlFor="username"></label>
-              <Field type="text" placeholder='UserName' name="username" className={styles.input} />
+          </div>
+          <p className={styles.khung}><ErrorMessage name="username" component="div" className={styles.error} /> </p>
 
-            </div>
-            <div>
-              <label htmlFor="password"></label>
-              <Field type="password" placeholder='Password' name="password" className={styles.input} />
+          <div>
+            <label htmlFor="password"></label>
+            <Field type="password" placeholder='Password' name="password" className={styles.input} />
 
-            </div>
-            <p className={styles.khung}><ErrorMessage name="password" component="div" className={styles.error} /> </p>
-            <div>
-              <label htmlFor="confirmPassword"></label>
-              <Field type="password" placeholder='Confirm Password' name="confirmPassword" className={styles.input} />
+          </div>
+          <p className={styles.khung}><ErrorMessage name="password" component="div" className={styles.error} /> </p>
+          <div>
+            <label htmlFor="confirmPassword"></label>
+            <Field type="password" placeholder='Confirm Password' name="confirmPassword" className={styles.input} />
 
-            </div>
-            <p className={styles.khung}><ErrorMessage
-              name="confirmPassword"
-              component="div"
-              className={styles.error}
-            /> </p>
-            <Link className={styles.link} to="/login" > Already have an account?</Link>
-            <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
-              Create Account
-            </button>
+          </div>
+          <p className={styles.khung}><ErrorMessage
+            name="confirmPassword"
+            component="div"
+            className={styles.error}
+          /> </p>
+          <Link className={styles.link} to="/login" > Already have an account?</Link>
+          <button type="submit" className={styles.btnSubmit}>
+            Create Account
+          </button>
 
-          </Form>
-        )}
+        </Form>
       </Formik>
     </div>
   );
