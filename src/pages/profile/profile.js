@@ -43,7 +43,7 @@ const onSubmit=(values, { setSubmitting }) => {
   
     alert("Change information success")
     localStorage.setItem("userlogin",JSON.stringify(values));
-
+window.location.href = "/";
 }
 
 const ProfileForm = () => {

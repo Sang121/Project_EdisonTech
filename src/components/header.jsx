@@ -9,8 +9,7 @@ function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState();
   const navigate = useNavigate();
-  let islogged = localStorage.getItem('islogged')
-  console.log(islogged);
+  let islogged = localStorage.getItem('islogged') 
   const handleSubmit = event => {
     event.preventDefault();
     if (searchTerm) {

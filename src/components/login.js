@@ -12,9 +12,9 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
   let isSuccessful = false;
- 
-    const users =JSON.parse(localStorage.getItem("users"))||[];
- console.log("a",users);
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  console.log("a", users);
 
   const validationSchema = Yup.object({
     username: Yup.string().required("Username không được bỏ trống"),
@@ -22,13 +22,12 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values, { setSubmitting }) => {
- 
-   
+
+
     users.forEach((user) => {
-  
-      if(
-        user.username === values.username && user.password === values.password)
-        {        
+
+      if (
+        user.username === values.username && user.password === values.password) {
         isSuccessful = true;
         localStorage.setItem('islogged', JSON.stringify(isSuccessful));
         localStorage.setItem('userlogin', JSON.stringify(user))
@@ -41,12 +40,12 @@ const LoginForm = () => {
       //  localStorage.setItem("user", JSON.stringify(userlogin));
       //  console.log(localStorage.getItem("user"));
 
-      });
-   
+    });
+
     if (isSuccessful) {
       alert("Đăng nhập thành công");
-     
-    
+
+
       navigate('/');
 
     } else {
@@ -56,10 +55,10 @@ const LoginForm = () => {
   };
 
   return (
-   
-  
+
+
     <div className={styles.container}>
-    
+
       <div className={styles.logo}>
         <a href="/">
           {" "}
@@ -116,7 +115,7 @@ const LoginForm = () => {
         )}
       </Formik>
     </div>
-       
+
   );
 };
 
