@@ -60,7 +60,7 @@ function CartPage() {
                   <tr className='cart_item' key={key}>
 
                     <td> <Link className='' to={`/product/${item.id}`}> <img className=" cart_img" src={item.thumbnail} alt={item.title} /> </Link> </td>
-                    <td >{item.title}</td>
+                    <td className='title-item'>{item.title}</td>
                     <td> {(item.new_price).toFixed(2)} </td>
                     <td >{item.quantity}</td>
                     <td>{(item.new_price * item.quantity).toFixed(2)}</td>
