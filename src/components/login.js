@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from "./login.module.css";
 import logo from '../assets/logo.png'
-import { BrowserRouter, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Popup from "./Popup";
 
 
 const LoginForm = () => {
@@ -11,26 +12,29 @@ const LoginForm = () => {
   const initialValues = { username: "", password: "" };
 
   const navigate = useNavigate();
-  let isSuccessful = false;
-
+  const [isSuccessful, setIsSuccessful] = useState();
+  const [popup, setPopup] = useState(false);
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  console.log("a", users);
+
 
   const validationSchema = Yup.object({
     username: Yup.string().required("Username không được bỏ trống"),
     password: Yup.string().required("Mật khẩu không được bỏ trống"),
   });
-
   const onSubmit = (values, { setSubmitting }) => {
-
-
     users.forEach((user) => {
 
       if (
         user.username === values.username && user.password === values.password) {
-        isSuccessful = true;
-        localStorage.setItem('islogged', JSON.stringify(isSuccessful));
+        setIsSuccessful(true)
+        console.log(isSuccessful)
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
         localStorage.setItem('userlogin', JSON.stringify(user))
+        navigate("/");
+      }
+      else {
+        setIsSuccessful(false)
+        setPopup(true)
       }
       //   phone:user.phone,
       //   address:user.address.address,
@@ -41,18 +45,14 @@ const LoginForm = () => {
       //  console.log(localStorage.getItem("user"));
 
     });
-
-    if (isSuccessful) {
-      alert("Đăng nhập thành công");
+    console.log(isSuccessful);
 
 
-      navigate('/');
-
-    } else {
-      alert("Đăng nhập thất bại");
-    }
     setSubmitting(false);
+
+
   };
+
 
   return (
 
@@ -85,6 +85,7 @@ const LoginForm = () => {
                   component="div"
                   className={styles.error}
                 />
+
               </p>
               <label>Username</label>
             </div>
@@ -114,6 +115,9 @@ const LoginForm = () => {
           </Form>
         )}
       </Formik>
+      <Popup trigger={popup} setTrigger={setPopup}>
+        <p><i class="fa  fa-exclamation"></i> Login failed,check again</p>
+      </Popup>
     </div>
 
   );

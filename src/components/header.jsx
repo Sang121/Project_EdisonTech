@@ -4,12 +4,15 @@ import { ShoppingCartSimple } from "phosphor-react";
 import logo from '../assets/logo.png';
 import axios from 'axios';
 import './headers.css';
+import Popup from './Popup';
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const [products, setProducts] = useState();
+  const [popup1, setPopup1] = useState(false);
+  const [popup2, setPopup2] = useState(false);
   const navigate = useNavigate();
-  let islogged = localStorage.getItem('islogged') 
+  let isLoggedIn = localStorage.getItem('isLoggedIn') 
   const handleSubmit = event => {
     event.preventDefault();
     if (searchTerm) {
@@ -30,31 +33,42 @@ function Header() {
     }
   }, []);
   const Logout = () => {
-    if (islogged){
-      localStorage.removeItem('islogged');
+    if (isLoggedIn){
+
+      localStorage.removeItem('isLoggedIn',isLoggedIn);
       localStorage.removeItem('userlogin');
-    alert("Logout Successful")
+      setPopup1(true);
+      setTimeout(function(){
+    
     window.location.href="/";
-    }
+      },1000)
+   
+  }
     else {
-      alert("You are not log in")
-      window.location.href="/";
+      setPopup2(true);
+      setTimeout(function(){
+    
+    window.location.href="/";
+      },1000)
     }
 
   
 }
 const editProfile = () => {
-  if(islogged){
+  if(isLoggedIn){
   window.location.href = "/editprofile";
 }
 else{
-  alert("You must be log in to edit profile")
-  window.location.href="/";
+  setPopup2(true);
+      setTimeout(function(){
+    
+    window.location.href="/";
+      },1000)
 }
 }
 const account = ()=>
 {
-  if(islogged){
+  if(isLoggedIn){
   window.location.href = "/editprofile";}
   else{
   
@@ -123,6 +137,13 @@ return (
       </div>
 
     </div>
+    <Popup trigger={popup2} setTrigger={setPopup2} >
+        <p><i class="fa fa-exclamation"></i> You must login fist</p>
+      </Popup> 
+
+    <Popup trigger={popup1} setTrigger={setPopup1} >
+        <p><i class="fa check fa-check"></i>Logout success</p>
+      </Popup>
   </div>
 
 );

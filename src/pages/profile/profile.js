@@ -1,7 +1,8 @@
 import styles from "./profile.module.css";
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Popup from "../../components/Popup";
 
 
 const ProfileSchema = Yup.object().shape({
@@ -23,34 +24,43 @@ const ProfileSchema = Yup.object().shape({
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
     .max(50, "Mật khẩu không được dài hơn 50 ký tự")
     .required("Vui lòng nhập mật khẩu"),
-  
+
 });
-const userLoggedIn = JSON.parse(localStorage.getItem("userlogin"));
 
-
-const onSubmit = (values, { setSubmitting }) => {
-  const storedUsers = JSON.parse(localStorage.getItem('users'));
-  const index = storedUsers.findIndex(user => user.username === userLoggedIn.username && user.phone === userLoggedIn.phone);
-
-
-  if (index !== -1) {
-    storedUsers.splice(index, 1);
-    storedUsers.push(values);
-    localStorage.setItem('users', JSON.stringify(storedUsers));
-  }
-
-
-  // Cập nhật lại thông tin người dùng đang đăng nhập trong Local Storage
-
-
-  alert("Change information success")
-  localStorage.setItem("userlogin", JSON.stringify(values));
-  setSubmitting(false);
-  window.location.href = "/";
-
-}
 
 const ProfileForm = () => {
+  const [isChanged, setIsChanged] = useState(false)
+  const userLoggedIn = JSON.parse(localStorage.getItem("userlogin"));
+
+
+  const onSubmit = (values, { setSubmitting }) => {
+    const storedUsers = JSON.parse(localStorage.getItem('users'));
+    const index = storedUsers.findIndex(user => user.username === userLoggedIn.username && user.phone === userLoggedIn.phone);
+
+
+    if (index !== -1) {
+      storedUsers.splice(index, 1);
+      storedUsers.push(values);
+      localStorage.setItem('users', JSON.stringify(storedUsers));
+    }
+
+
+    // Cập nhật lại thông tin người dùng đang đăng nhập trong Local Storage
+
+
+
+    localStorage.setItem("userlogin", JSON.stringify(values));
+    setIsChanged(true)
+    setSubmitting(false);
+    setTimeout(function(){
+      if (isChanged === false) {
+
+
+      window.location.href = "/"
+
+    }}, 3000)
+
+  }
   return (
     <div className={styles.container} >
 
@@ -87,7 +97,7 @@ const ProfileForm = () => {
             <p className={styles.khung}>  <ErrorMessage name="email" component="div" className={styles.error} /></p>
             <tr className={styles.item}>
               <th> <label htmlFor="phone">Phone number</label></th>
-              <th> <Field type="number" placeholder='Phone' name="phone" className={styles.input} /></th>
+              <th> <Field type="text" placeholder='Phone' name="phone" className={styles.input} /></th>
 
             </tr>
             <p className={styles.khung}> <ErrorMessage name="phone" component="div" className={styles.error} /> </p>
@@ -121,6 +131,9 @@ const ProfileForm = () => {
         </Form>
 
       </Formik>
+      <Popup trigger={isChanged} setTrigger={setIsChanged}>
+        <p><i class="fa check fa-check"></i>Change infomation success</p>
+      </Popup>
     </div>
   );
 };
