@@ -1,8 +1,9 @@
-import { Table } from 'phosphor-react';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './cartPage.css'
+import Popup from '../../components/Popup';
 function CartPage() {
+  const [popup, setPopup] = useState()
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const removeFromCart = (item) => {
     const updatedCart = cartItems.filter((cartItem) => cartItem.id !== item.id);
@@ -11,6 +12,22 @@ function CartPage() {
   };
   const total = cartItems.reduce((acc, item) => acc + item.new_price * item.quantity, 0);
   console.log(cartItems)
+  const isLoggedIn = localStorage.getItem('isLoggedIn')
+  const Checkout = () => {
+    if (isLoggedIn) {
+
+      //checkout
+    }
+    else {
+      setPopup(true)
+      
+    }
+  }
+  if (popup === false) {
+    setTimeout(() => {
+      window.location.href = "/login"
+    }, 1000)
+  }
   return (
 
     <div className='cart-container' >
@@ -42,14 +59,16 @@ function CartPage() {
                 {cartItems.map((item, key) => (
                   <tr className='cart_item' key={key}>
 
-                    <td> <Link className='' to={`/product/${item.id}`}> <img className=" cart-img" src={item.thumbnail} alt={item.title} /> </Link> </td>
+                    <td> <Link className='' to={`/product/${item.id}`}> <img className=" cart_img" src={item.thumbnail} alt={item.title} /> </Link> </td>
                     <td >{item.title}</td>
                     <td> {(item.new_price).toFixed(2)} </td>
                     <td >{item.quantity}</td>
                     <td>{(item.new_price * item.quantity).toFixed(2)}</td>
                     <td>  <button className='rm-btn' onClick={() => removeFromCart(item)}><i class="fa fa-trash"></i>
                     </button></td>
+
                   </tr>
+
 
                 ))}
 
@@ -76,7 +95,7 @@ function CartPage() {
 
             <div className="d-flex tbtn justify-content-center">
               <button type="button" className="btn btn-light btn-lg me-2"> <Link className='text-black' to='/'> Continue shopping </Link> </button>
-              <button type="button" className="btn  btn-primary btn-lg">Checkout</button>
+              <button type="button" onClick={Checkout} className="btn  btn-primary btn-lg">Checkout</button>
             </div>
           </div>
 
@@ -86,6 +105,9 @@ function CartPage() {
 
 
       )}
+      <Popup trigger={popup} setTrigger={setPopup}>
+        <p><i class="fa  fa-close"></i> You must login to checkout</p>
+      </Popup>
     </div>
   )
 }

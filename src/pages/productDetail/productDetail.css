@@ -139,12 +139,18 @@ button {
   background-color: bisque;
   margin-top: 15px;
   width: 40px;
+  
   font-size: 14px;
   border: 1px solid;
   border-radius: 5px;
   background-color: #4dccc6;
   border-radius: 5px;
+  border: none;
 }
 .setQuantity:active {
   top: 2px;
+}
+.check{
+  font-size: 20px;
+  color: #49e198;
 }

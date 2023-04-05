@@ -1,21 +1,22 @@
 import styles from "./signup.module.css";
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Popup from "./Popup";
 
 const SignupSchema = Yup.object().shape({
   fullName: Yup.string()
     .min(5, "Tên của bạn phải có ít nhất 5 ký tự")
     .max(50, "Tên của bạn không được dài hơn 50 ký tự")
     .required("Vui lòng nhập tên của bạn"),
-    username: Yup.string()
+  username: Yup.string()
     .min(2, "Tên của bạn phải có ít nhất 2 ký tự")
     .max(50, "Tên của bạn không được dài hơn 50 ký tự")
     .required("Vui lòng nhập tên người dùng"),
   email: Yup.string()
     .email("Email không hợp lệ")
-    .required("Vui lòng nhập địa chỉ email"), 
+    .required("Vui lòng nhập địa chỉ email"),
   phone: Yup.string()
     .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, "Vui lòng nhập số điện thoại hợp lệ")
     .required("Vui lòng nhập số điện thoại"),
@@ -27,44 +28,47 @@ const SignupSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Mật khẩu nhập lại không trùng khớp")
     .required("Bạn cần nhập lại mật khẩu"),
 });
-// let admin=[{
-//   id: "1",
-//   username: "admin",
-//   password: "admin123",
-//   phone: "0987654321",
-//   address: "Địa chỉ",
-//   name: "Nguyễn Văn",
-//   email: "envkt@gmail.com",
-// }]
 
-// localStorage.setItem("users",JSON.stringify(admin))
-let users = JSON.parse(localStorage.getItem("users")) || [];
-
-console.log("1", users);
-const onSubmit = (values, { setSubmitting }) => {
-
-  console.log("click submit");
-  let newUsers = {
-    username: values.username,
-    password: values.password,
-    fullName: values.fullName,
-    phone: values.phone,
-
-    email: values.email,
-    address: values.address,
-
-  };
-  users.push(newUsers);
-
-  localStorage.setItem("users", JSON.stringify(users));
-  alert("Create successfully")
-  window.location.href = "/login";
-
-
-  setSubmitting(false);
-}
 
 const SignupForm = () => {
+  const [popup, setPopup] = useState();
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  const [userExists, setUserExists] = useState(false)
+  const onSubmit = (values, { setSubmitting }) => {
+
+    console.log("click submit");
+    if (users.filter(user => user.username === values.username).length > 0) {
+      
+      setUserExists(true)
+      console.log(userExists);
+      setSubmitting(false);
+      return;
+    }
+    let newUsers = {
+      username: values.username,
+      password: values.password,
+      fullName: values.fullName,
+      phone: values.phone,
+
+      email: values.email,
+      address: values.address,
+
+    };
+    users.push(newUsers);
+
+    localStorage.setItem("users", JSON.stringify(users));
+    setPopup(true)
+
+
+    setSubmitting(false);
+  }
+  if (popup === false) {
+
+
+    window.location.href = "/login";
+
+  }
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>REGISTER</h1>
@@ -113,8 +117,8 @@ const SignupForm = () => {
             <label htmlFor="username"></label>
             <Field type="text" placeholder='UserName' name="username" className={styles.input} />
 
+            <ErrorMessage name="username" component="div" className={styles.error} />
           </div>
-          <p className={styles.khung}><ErrorMessage name="username" component="div" className={styles.error} /> </p>
 
           <div>
             <label htmlFor="password"></label>
@@ -139,6 +143,13 @@ const SignupForm = () => {
 
         </Form>
       </Formik>
+      <Popup trigger={userExists} setTrigger={setUserExists
+      }>
+        <p><i class="fa   fa-close"></i> UserName Already exist</p>
+      </Popup>
+      <Popup trigger={popup} setTrigger={setPopup}>
+        <p><i class="fa check fa-check"></i> Create account success</p>
+      </Popup>
     </div>
   );
 };
