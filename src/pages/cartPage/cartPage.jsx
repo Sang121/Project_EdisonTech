@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './cartPage.css'
 import Popup from '../../components/Popup';
-import { Field, Formik } from 'formik';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../../components/CheckOut';
 import { loadStripe } from '@stripe/stripe-js';

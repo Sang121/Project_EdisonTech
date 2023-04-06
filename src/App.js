@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from './pages/Home/Home';
 import './App.css';
@@ -11,8 +11,6 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import CartPage from "./pages/cartPage/cartPage"
 import ProductDetail from "./pages/productDetail/productDetail";
-import CheckoutForm from "./components/CheckOut";
-import { Elements } from "@stripe/react-stripe-js";
 
 function App() {
 
