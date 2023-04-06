@@ -106,6 +106,10 @@ const LoginForm = () => {
             </div>
             <div className="margin-10">
               <button type="submit" disabled={isSubmitting}>
+              <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
                 Login
               </button>
               <Link className={styles.btn_reg} to="/register">

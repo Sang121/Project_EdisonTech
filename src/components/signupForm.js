@@ -2,7 +2,8 @@ import styles from "./signup.module.css";
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import logo from '../assets/logo.png';
 import Popup from "./Popup";
 
 const SignupSchema = Yup.object().shape({
@@ -30,6 +31,12 @@ const SignupSchema = Yup.object().shape({
 });
 
 
+
+const SignupForm = () => {
+  const [popup, setPopup] = useState();
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  const [userExists, setUserExists] = useState(false)
+  const onSubmit = (values, { setSubmitting }) => {
 const SignupForm = () => {
   const [popup, setPopup] = useState();
   let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -38,7 +45,7 @@ const SignupForm = () => {
 
     console.log("click submit");
     if (users.filter(user => user.username === values.username).length > 0) {
-      
+
       setUserExists(true)
       console.log(userExists);
       setSubmitting(false);
@@ -52,10 +59,15 @@ const SignupForm = () => {
 
       email: values.email,
       address: values.address,
+      email: values.email,
+      address: values.address,
 
     };
     users.push(newUsers);
+   
 
+    localStorage.setItem("users", JSON.stringify(users));
+    setPopup(true)
     localStorage.setItem("users", JSON.stringify(users));
     setPopup(true)
 
@@ -68,10 +80,26 @@ const SignupForm = () => {
     window.location.href = "/login";
 
   }
+    setSubmitting(false);
+  }
+  if (popup === false) {
 
+
+    window.location.href = "/login";
+
+  }
+  }
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>REGISTER</h1>
+
+      <div className={styles.logo}>
+        <a href="/">
+          {" "}
+          <img src={logo} className="logo" />
+        </a>
+      </div>
+
+
       <Formik
         initialValues={
           {
@@ -86,9 +114,8 @@ const SignupForm = () => {
         onSubmit={onSubmit}
 
         validationSchema={SignupSchema}
-
-
       >
+        
         <Form
           className={styles.form}>
           <div >
@@ -105,31 +132,26 @@ const SignupForm = () => {
             <label htmlFor="phone"></label>
             <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
             <p className={styles.khung}>  <ErrorMessage name="phone" component="div" className={styles.error} /></p>
-
-          </div>
-
+            </div>
           <div>
             <label htmlFor="address"></label>
             <Field type="text" placeholder='Address' name="address" className={styles.input} />
-
           </div>
+          <p className={styles.khung}></p>
           <div>
             <label htmlFor="username"></label>
             <Field type="text" placeholder='UserName' name="username" className={styles.input} />
-
-            <ErrorMessage name="username" component="div" className={styles.error} />
           </div>
-
+          <p className={styles.khung}></p>
           <div>
             <label htmlFor="password"></label>
             <Field type="password" placeholder='Password' name="password" className={styles.input} />
-
+            {/* <p className={styles.khung}></p> */}
           </div>
           <p className={styles.khung}><ErrorMessage name="password" component="div" className={styles.error} /> </p>
           <div>
             <label htmlFor="confirmPassword"></label>
             <Field type="password" placeholder='Confirm Password' name="confirmPassword" className={styles.input} />
-
           </div>
           <p className={styles.khung}><ErrorMessage
             name="confirmPassword"
@@ -137,7 +159,7 @@ const SignupForm = () => {
             className={styles.error}
           /> </p>
           <Link className={styles.link} to="/login" > Already have an account?</Link>
-          <button type="submit" className={styles.btnSubmit}>
+          <button type="submit" className={styles.btnSubmit} >
             Create Account
           </button>
 
@@ -150,8 +172,8 @@ const SignupForm = () => {
       <Popup trigger={popup} setTrigger={setPopup}>
         <p><i class="fa check fa-check"></i> Create account success</p>
       </Popup>
+      
     </div>
   );
-};
-
+}
 export default SignupForm
