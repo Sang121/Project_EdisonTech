@@ -131,7 +131,7 @@ function ProductDetail() {
             <input type="text" className='quantity' name="quantity" onChange={handleQuantityChange} value={quantity} />
             <button className='setQuantity' onClick={() => setQuantity(quantity + 1)}> + </button>
           </div>
-          <div className='frame'>
+          <div >
             <button onClick={handleAddToCart} class=' cus-btn add-btn'><span class='add'>Add to Cart</span></button>
 
           </div>

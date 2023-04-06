@@ -100,12 +100,12 @@ return (
           <button type="submit" class=" btn .btn-header "><i class="fa fa-home" > Home</i></button>
         </Link>
         <form className="d-flex search" onSubmit={handleSubmit}>
-          <div class="p-1  bg-light rounded rounded-pill shadow-sm mb-4">
+          <div class="p-1   bg-light rounded rounded-pill shadow-sm mb-4">
             <div class="input-group  search-input">
               <input type="search"
                 value={searchTerm}
-                onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập sản phẩm bạn cần tìm?"
-                aria-describedby="button-addon1" class="form-control border-0 rounded-pill bg-light" />
+                onChange={event => setSearchTerm(event.target.value)} placeholder="Search?"
+                aria-describedby="button-addon1" class="form-control border-0 bg-light" />
               <div class="input-group-append">
                 <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
               </div>

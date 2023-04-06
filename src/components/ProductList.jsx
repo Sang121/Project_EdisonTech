@@ -6,8 +6,8 @@ import { Carousel } from 'react-bootstrap';
 import ConvertToStars from '../service/convertStar';
 import { Link } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
-import { fetchProducts } from '../service/products';
 import { base_url } from '../service/base-url';
+import Popup from './Popup';
 
 function ProductList() {
   const [totalCount, setTotalCount] = useState(0)
@@ -16,7 +16,10 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
-  const getProducts = async (pg = page, pgSize = pageSize) => {
+  const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  
+  const [addSuccess, setAddSuccess] = useState(false);
+  const getProducts = async (pg = page, pgSize = 20) => {
     try {
 
       const res = await axios.get(`${base_url}/products?limit=${100}&page=${pg}`);
@@ -35,10 +38,10 @@ function ProductList() {
 
   useEffect(() => {
 
-    getProducts(page, pageSize);
+    getProducts(page);
     setLoading(false);
 
-  }, [page, pageSize]);
+  }, [page]);
 
   const prePage = async () => {
     const pg = page === 1 ? 1 : page - 1;
@@ -60,11 +63,13 @@ function ProductList() {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-
-
+  const findItemIndex = (cart, id) => {
+    return cart.findIndex((item) => item.id === id);
+  }
+ 
   return (
     <div >
-      
+
       <Carousel className='slide' activeIndex={index} onSelect={handleSelect}>
         {products?.map((product, index) => (
           <Carousel.Item key={index}>
@@ -91,28 +96,58 @@ function ProductList() {
           ) :
             products?.map((product, index) => (
 
-              <Link className='text-black' to={`/product/${product.id}`}>
-                <div className='cardViewContainer' key={index}><div className="cardView">
 
-                  <img src={product.thumbnail} className="thumbnail" />
-                  <p className='brand'>{product.brand}</p>
-                  <div className='detail'>
-                    <h5 className='title'> {product.title}  </h5>
+              <div className='cardViewContainer' key={index}><div className="cardView">
+             
+                <img src={product.thumbnail} className="thumbnail" />
+                <p className='brand'>{product.brand}</p>
+              
+                <div className='detail'>
+                  <Link className='text-black' to={`/product/${product.id}`}>
+                    <h6 className='title'> {product.title}</h6>
                     <p className='des'>{product.description}</p>
-                    <div className='rating star'>
-                      {ConvertToStars(Math.round(product.rating))}
+                  </Link>
+                  <div className='rating star'>
+                    {ConvertToStars(Math.round(product.rating))}
 
-                    </div>
-                    <p className=''> Remaining: {product.stock} </p>
-                    <div className='price'>
-                      <h4 className='new-price'>${(product.price * (100 - product.discountPercentage) / 100).toFixed(2)} </h4>
-                      <p className='old-price'>${product.price}</p>
-                    </div>
+                  </div>
+
+                  <div className='price'>
+                    <h4 className='new-price'> {(product.price * (100 - product.discountPercentage) / 100).toFixed(2)} </h4>
+                    <p className='old-price'>${product.price}</p>
+                  </div>
+                  <div className='add-cart'>
+                    <button onClick={()=>{
+                      const item = {
+                        id: product.id, price: product.price, discountPercentage: product.discountPercentage, new_price: ((100 - product.discountPercentage) * product.price) / 100,
+                        thumbnail: product.thumbnail, title: product.title, quantity: 1
+                      };
+                    
+                 
+                      const itemIndex = findItemIndex(cartItems, product.id);
+                  
+                      if (itemIndex !== -1) {
+                        // If the item already exists in the cart, increase its quantity by 1
+                        const updatedCart = [...cartItems];
+                        updatedCart[itemIndex].quantity += 1;
+                        setCartItems(updatedCart);
+                      } else {
+                        // If the cart does not exist, create a new array and add the new item to it
+                        const updatedCart = [...cartItems, item];
+                        setCartItems(updatedCart);
+                      }
+                      localStorage.setItem('cart', JSON.stringify(cartItems));
+                      
+                  
+                      setAddSuccess(true)
+                    }} class=' cus-btn  add-btn'><span class='add'>Add to Cart</span></button>
+
                   </div>
                 </div>
+              </div>
 
-                </div>
-              </Link>
+              </div>
+
 
 
             ))}
@@ -127,17 +162,11 @@ function ProductList() {
 
         <button onClick={nextPage} disabled={totalCount <= page * pageSize}>Next</button>
         <br />
-        <label>
-          Page Size:
-          <input
-            type="number"
-            value={pageSize}
-            onChange={(e) => setPageSize(parseInt(e.target.value))}
-          />
-        </label>
       </div>
 
-
+      <Popup trigger={addSuccess} setTrigger={setAddSuccess}>
+        <p><i class="fa check fa-check"></i> Add to cart success</p>
+      </Popup>
     </div>
 
   )
