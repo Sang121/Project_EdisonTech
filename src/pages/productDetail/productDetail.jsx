@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 import ConvertToStars from '../../service/convertStar';
 import './productDetail.css';
+import Popup from '../../components/Popup'
 import { base_url } from '../../service/base-url';
 const findItemIndex = (cart, id) => {
   return cart.findIndex((item) => item.id === id);
@@ -14,9 +15,10 @@ function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [addSuccess, setAddSuccess] = useState(false);
   let { id } = useParams();
-  const islogged = localStorage.getItem('islogged');
   const new_price = (product.price * (100 - product.discountPercentage) / 100).toFixed(2)
+
   useEffect(() => {
     if (id) {
       try {
@@ -32,32 +34,29 @@ function ProductDetail() {
     }
 
   }, [id]);
-  
-    const handleAddToCart = () => {
-      const item = { id: product.id, new_price: product.discountPercentage * product.price, thumbnail: product.thumbnail, title: product.title, quantity: quantity };
-      const itemIndex = findItemIndex(cartItems, product.id);
-      if(islogged) { 
-      if (itemIndex !== -1) {
-        // If the item already exists in the cart, increase its quantity by 1
-        const updatedCart = [...cartItems];
-        updatedCart[itemIndex].quantity += quantity;
-        setCartItems(updatedCart);
-      } else {
-        // If the cart does not exist, create a new array and add the new item to it
-        const updatedCart = [...cartItems, item];
-        setCartItems(updatedCart);
-      }
 
-      // Reset the quantity to 1 after adding the item to the cart
-      setQuantity(1);
+  const handleAddToCart = () => {
+    const item = {
+      id: product.id, price: product.price, discountPercentage: product.discountPercentage, new_price: ((100 - product.discountPercentage) * product.price) / 100,
+      thumbnail: product.thumbnail, title: product.title, quantity: quantity
+    };
+    const itemIndex = findItemIndex(cartItems, product.id);
+
+    if (itemIndex !== -1) {
+      // If the item already exists in the cart, increase its quantity by 1
+      const updatedCart = [...cartItems];
+      updatedCart[itemIndex].quantity += quantity;
+      setCartItems(updatedCart);
+    } else {
+      // If the cart does not exist, create a new array and add the new item to it
+      const updatedCart = [...cartItems, item];
+      setCartItems(updatedCart);
     }
-  
 
-  else{
-    alert("Please login to continue")
-    window.location.href = "/login"
+    // Reset the quantity to 1 after adding the item to the cart
+    setQuantity(1);
+    setAddSuccess(true)
   }
-}
 
   const handleQuantityChange = (e) => {
     const value = Number(e.target.value);
@@ -89,7 +88,7 @@ function ProductDetail() {
               <li className="img-cover">
                 <img
                   src={product.thumbnail}
-                  alt="image of product"
+                  alt={product.title}
                   className="col-12"
                 />
               </li>
@@ -123,25 +122,27 @@ function ProductDetail() {
             <p className='o-price'> ${product.price}</p>
 
           </div>
-          <p className='stock'> Remaining: {product.stock} product </p>
-          <h5 > {product.description}</h5>
+          <p className='stock'> Remaining: {product.stock} </p>
+          <p className='descript' > {product.description}</p>
 
-          <div >
-            <button className='setQuantity' onClick={() => setQuantity(quantity - 1)}> - </button>
+          <div className='setQuantity ' >
+            <span  onClick={() => setQuantity(quantity - 1)}> - </span>
 
             <input type="text" className='quantity' name="quantity" onChange={handleQuantityChange} value={quantity} />
-            <button className='setQuantity' onClick={() => setQuantity(quantity + 1)}> + </button>
+            <span  onClick={() => setQuantity(quantity + 1)}> + </span>
           </div>
-          <div className='frame'>
+          <div >
             <button onClick={handleAddToCart} class=' cus-btn add-btn'><span class='add'>Add to Cart</span></button>
+
           </div>
 
 
         </div>
 
       </div>
-
-
+      <Popup trigger={addSuccess} setTrigger={setAddSuccess}>
+        <p><i class="fa check fa-check"></i> Add to cart success</p>
+      </Popup>
 
     </div>
   )
