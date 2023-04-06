@@ -9,7 +9,7 @@ function Footer
         <ul>
           <li> <a href='https://help.shopee.vn/portal/article/77244'> Chính sách bảo mật </a></li>
           <li><a href='https://help.shopee.vn/portal/article/77245'> Quy chế hoạt động </a></li>
-          <li><a href='https://help.shopee.vn/portal/article/77250'> Chính sách vận huyển </a></li>
+          <li><a href='https://help.shopee.vn/portal/article/77250'> Chính sách vận chuyển </a></li>
           <li><a href='https://help.shopee.vn/portal/article/77251'> Chính sách hoàn hàng và trả tiền </a></li>
         </ul>
       </div>

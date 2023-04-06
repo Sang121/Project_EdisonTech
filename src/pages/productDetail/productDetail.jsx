@@ -122,14 +122,14 @@ function ProductDetail() {
             <p className='o-price'> ${product.price}</p>
 
           </div>
-          <p className='stock'> Remaining: {product.stock} product </p>
-          <h5 > {product.description}</h5>
+          <p className='stock'> Remaining: {product.stock} </p>
+          <p className='descript' > {product.description}</p>
 
-          <div >
-            <button className='setQuantity' onClick={() => setQuantity(quantity - 1)}> - </button>
+          <div className='setQuantity ' >
+            <span  onClick={() => setQuantity(quantity - 1)}> - </span>
 
-            <input type="text" className='quantity' name="quantity" onChange={handleQuantityChange} value={quantity} />
-            <button className='setQuantity' onClick={() => setQuantity(quantity + 1)}> + </button>
+            <input type="number" className='quantity' name="quantity" onChange={handleQuantityChange} value={quantity} />
+            <span  onClick={() => setQuantity(quantity + 1)}> + </span>
           </div>
           <div >
             <button onClick={handleAddToCart} class=' cus-btn add-btn'><span class='add'>Add to Cart</span></button>

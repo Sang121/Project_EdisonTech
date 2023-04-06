@@ -12,6 +12,8 @@ function Header() {
   const [popup1, setPopup1] = useState(false);
   const [popup2, setPopup2] = useState(false);
   const navigate = useNavigate();
+  const cart=JSON.parse(localStorage.getItem('cart'));
+  
   let isLoggedIn = localStorage.getItem('isLoggedIn') 
   const handleSubmit = event => {
     event.preventDefault();
@@ -31,7 +33,7 @@ function Header() {
     catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [cart.length]);
   const Logout = () => {
     if (isLoggedIn){
 
@@ -76,7 +78,7 @@ const account = ()=>
 }
 }
 return (
-  <div className='navs d-flex column'>
+  <div className='navs '>
     <button class="btn navbar-toggler-icon sidebar_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">☰</button>
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -89,23 +91,23 @@ return (
         <button onClick={Logout} className=' btn btn_logout item'> Log out</button>
       </div>
     </div>
-    <div className="logo col-4 col-sm-2">
+    <div className="logo col-12 col-sm-2">
       <Link to="/">
         <img src={logo} alt="logo" />
       </Link>
     </div>
-    <div className="nav col-10 row">
-      <div className=' topnav d-flex justify-content-between'>
+    <div className="nav col-12 col-sm-10 row">
+      <div className=' topnav d-flex justify-content-around'>
         <Link to="/" className='home-btn'>
-          <button type="submit" class=" btn .btn-header "><i class="fa fa-home" > Home</i></button>
+          <p type="submit" class="  btn-header "><i class="fa fa-home" > Home</i></p>
         </Link>
         <form className="d-flex search" onSubmit={handleSubmit}>
-          <div class="p-1   bg-light rounded rounded-pill shadow-sm mb-4">
-            <div class="input-group  search-input">
+          <div class="  search-group  abc bg-light rounded rounded-pill ">
+            <div class="input-group  ">
               <input type="search"
                 value={searchTerm}
-                onChange={event => setSearchTerm(event.target.value)} placeholder="Search?"
-                aria-describedby="button-addon1" class="form-control border-0 bg-light" />
+                onChange={event => setSearchTerm(event.target.value)} placeholder="Nhập sản phẩm bạn cần tìm"
+                aria-describedby="button-addon1" class="seach-btn rounded rounded-pill border-0 bg-light" />
               <div class="input-group-append">
                 <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
               </div>
@@ -114,22 +116,22 @@ return (
         </form>
         <div className=" login-cart">
           <Link to="/login">
-            <button type="submit" onClick={account} class="btn .btn-header login-btn"><i class="fa fa-sign-in"> Tài khoản</i></button>
+            <p onClick={account} class="  btn-header login-btn"><i class="fa fa-sign-in"> Tài khoản</i></p>
           </Link>
 
           <Link to="/cart">
-            <button type="submit" class="btn .btn-header cart-btn"><ShoppingCartSimple size={30} /></button>
+            <span type="submit" class=" btn-header cart-btn"><ShoppingCartSimple size={30} /> </span>
           </Link>
         </div>
       </div>
 
-      <div className='d-flex  justify-content-between  column '>
+      <div className='d-flex titles justify-content-between  column '>
         {products?.map((product, index) => (
 
           <Link className='text-black list-title' to={`/search/${product.title}`}>
             <div className='cardViewContainer' key={index}>
 
-              <p className='titles '> {product.title}</p>
+              <p className='item '> {product.title}</p>
 
             </div>
           </Link>

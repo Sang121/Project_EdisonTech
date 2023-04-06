@@ -98,8 +98,9 @@ function ProductList() {
 
 
               <div className='cardViewContainer' key={index}><div className="cardView">
-             
+              
                 <img src={product.thumbnail} className="thumbnail" />
+                
                 <p className='brand'>{product.brand}</p>
               
                 <div className='detail'>

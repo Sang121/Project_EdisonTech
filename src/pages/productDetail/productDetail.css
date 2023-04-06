@@ -16,7 +16,6 @@
 }
 .img-cover {
   height: 350px;
-  border: 1px solid;
 
   border-radius: 15px;
 }
@@ -24,7 +23,7 @@
   height: 350px;
   object-fit: cover;
   border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .nav {
   display: flex;
@@ -48,10 +47,11 @@ li{
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
+  border: 1px solid ;
 }
 
 .stock {
-  font-size: larger;
+  font-size: normal;
 }
 .loader_detail {
   display: flex;
@@ -133,20 +133,27 @@ button {
   border: none;
 }
 .setQuantity {
-  background-color: bisque;
-  margin-top: 15px;
-  width: 40px;
-  
-  font-size: 14px;
-  border: 1px solid;
-  border-radius: 5px;
-  background-color: #4dccc6;
-  border-radius: 5px;
-  border: none;
+  margin-left:25px ;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
+  border: 1px solid  black;
+  padding :5px;
+  height: 30px;
 }
-.setQuantity:active {
-  top: 2px;
+.setQuantity input{
+  margin-top: 0;
+  text-align: center;
 }
+.setQuantity input:active{
+  border:none;
+}
+
+
+
 .check{
   font-size: 20px;
   color: #49e198;
