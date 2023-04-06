@@ -144,7 +144,7 @@ const SignupForm = () => {
             className={styles.error}
           /> </p>
           <Link className={styles.link} to="/login" > Already have an account?</Link>
-          <button type="submit" className={styles.btnSubmit} disabled={isSubmitting}>
+          <button type="submit" className={styles.btnSubmit} >
             Create Account
           </button>
 
