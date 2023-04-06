@@ -20,6 +20,7 @@
     "bootstrap": "^5.2.3",
     "formik": "^2.2.9",
     "l": "^0.6.0",
+    "node": "18.13.0",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
