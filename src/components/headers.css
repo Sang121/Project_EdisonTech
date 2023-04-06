@@ -8,6 +8,11 @@
   flex-wrap: wrap;
   gap: 6px;
 }
+.sidebar_btn{
+  position: fixed;
+  z-index: 10;
+  margin-left:10px;
+}
 .nav {
   padding: 10px;
   width: 100%;
@@ -31,16 +36,14 @@
   font-style: oblique;
 }
 .search-group {
-  
   width: 100%;
   height: 40px;
 }
-.input-group{
+.input-group {
   display: flex;
   justify-content: space-between;
 }
 .seach-btn {
- 
   border: none;
   padding-left: 20px;
   width: 80%;
@@ -74,6 +77,7 @@ input:focus {
     justify-content: space-between;
     flex-direction: column;
   }
+
 }
 @media only screen and (max-width: 768px) {
   .login-cart {

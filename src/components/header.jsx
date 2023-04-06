@@ -79,7 +79,7 @@ const account = ()=>
 }
 return (
   <div className='navs '>
-    <button class="btn navbar-toggler-icon sidebar_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">☰</button>
+    <span class=" navbar-toggler-icon sidebar_btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">☰</span>
 
     <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
       <div class="offcanvas-header">
@@ -91,7 +91,7 @@ return (
         <button onClick={Logout} className=' btn btn_logout item'> Log out</button>
       </div>
     </div>
-    <div className="logo col-12 col-sm-2">
+    <div className="logo col-10 col-sm-2">
       <Link to="/">
         <img src={logo} alt="logo" />
       </Link>

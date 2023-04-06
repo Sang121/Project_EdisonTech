@@ -11,32 +11,33 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import CartPage from "./pages/cartPage/cartPage"
 import ProductDetail from "./pages/productDetail/productDetail";
-import CheckOut from "./components/CheckOut";
+import CheckoutForm from "./components/CheckOut";
+import { Elements } from "@stripe/react-stripe-js";
 
 function App() {
+
   return (
     <div>
       <Router>
-      <Header/> 
+        <Header />
         <Routes>
-         
+
           <Route path="/" element={<Home />} />
-          
-          <Route path="/login" element={ <Login />} />
-          <Route path="/product/:id" element={ <ProductDetail  />} />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/search/:searchTerm" element={<ProductSearch />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/editProfile" element={ <ProfileForm/>} />
-          <Route path="/cart/checkout" element={ <CheckOut />} />
-       
-         <Route path="/cart" element={<CartPage/>} />
+          <Route path="/editProfile" element={<ProfileForm />} />
+
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
 
 
 
-      
+
     </div>
   );
 }
