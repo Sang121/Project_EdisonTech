@@ -1,4 +1,6 @@
 import axios from 'axios';
+import React from 'react';
+
 import { base_url } from './base-url';
 export const fetchProducts = () => {
     
