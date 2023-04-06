@@ -3,6 +3,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, Navigate } from "react-router-dom";
+import logo from '../assets/logo.png';
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -62,7 +63,15 @@ window.location.href = "/login";
 const SignupForm = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>REGISTER</h1>
+
+<div className={styles.logo}>
+        <a href="/">
+          {" "}
+          <img src={logo} className="logo" />
+        </a>
+      </div>
+
+      
       <Formik
         initialValues={
           {
@@ -76,7 +85,7 @@ const SignupForm = () => {
           }}
         onSubmit={onSubmit}
         validator={() => ({})}
-
+        validationSchema={SignupSchema}
 
       >
         {({ isSubmitting }) => (
@@ -84,6 +93,7 @@ const SignupForm = () => {
           <Form
             className={styles.form}>
             <div >
+            <h1 className={styles.title}>REGISTER</h1>
               <label htmlFor="name"></label>
               <Field type="text" placeholder='Name' name="name" className={styles.input} />
             </div>
@@ -96,29 +106,29 @@ const SignupForm = () => {
             <div>
               <label htmlFor="phone"></label>
               <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
-
             </div>
+              <p className={styles.khung}></p>
 
             <div>
               <label htmlFor="address"></label>
               <Field type="text" placeholder='Address' name="address" className={styles.input} />
-
             </div>
+              <p className={styles.khung}></p>
             <div>
               <label htmlFor="username"></label>
               <Field type="text" placeholder='UserName' name="username" className={styles.input} />
-
             </div>
+              <p className={styles.khung}></p>
             <div>
               <label htmlFor="password"></label>
               <Field type="password" placeholder='Password' name="password" className={styles.input} />
-
+              {/* <p className={styles.khung}></p> */}
             </div>
             <p className={styles.khung}><ErrorMessage name="password" component="div" className={styles.error} /> </p>
             <div>
               <label htmlFor="confirmPassword"></label>
               <Field type="password" placeholder='Confirm Password' name="confirmPassword" className={styles.input} />
-
+              {/* <p className={styles.khung}></p> */}
             </div>
             <p className={styles.khung}><ErrorMessage
               name="confirmPassword"
