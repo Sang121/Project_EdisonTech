@@ -128,7 +128,7 @@ function ProductDetail() {
           <div className='setQuantity ' >
             <span  onClick={() => setQuantity(quantity - 1)}> - </span>
 
-            <input type="number" className='quantity' name="quantity" onChange={handleQuantityChange} value={quantity} />
+            <input type="text" className='quantity' name="quantity" onChange={handleQuantityChange} value={quantity} />
             <span  onClick={() => setQuantity(quantity + 1)}> + </span>
           </div>
           <div >
