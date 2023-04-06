@@ -101,7 +101,7 @@ function ProductList() {
               
                 <img src={product.thumbnail} className="thumbnail" />
                 
-                <p className='brand'>{product.brand}</p>
+                
               
                 <div className='detail'>
                   <Link className='text-black' to={`/product/${product.id}`}>

@@ -89,7 +89,7 @@
 }
 .brand {
   font-family: oblique;
-  background-image: linear-gradient(to right, #f8ffae, #43c6ac);
+  background-color:  red;
   margin-top: 10px;
   width: 120px;
   padding: 5px;

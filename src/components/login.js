@@ -12,11 +12,8 @@ const LoginForm = () => {
   const initialValues = { username: "", password: "" };
 
   const navigate = useNavigate();
-  const [isSuccessful, setIsSuccessful] = useState();
   const [popup, setPopup] = useState(false);
   const users = JSON.parse(localStorage.getItem("users")) || [];
-
-
   const validationSchema = Yup.object({
     username: Yup.string().required("Username không được bỏ trống"),
     password: Yup.string().required("Mật khẩu không được bỏ trống"),
@@ -26,26 +23,19 @@ const LoginForm = () => {
 
       if (
         user.username === values.username && user.password === values.password) {
-        setIsSuccessful(true)
-        console.log(isSuccessful)
+      
+        
         localStorage.setItem('isLoggedIn', JSON.stringify(true));
         localStorage.setItem('userlogin', JSON.stringify(user))
         navigate("/");
       }
       else {
-        setIsSuccessful(false)
+      
         setPopup(true)
       }
-      //   phone:user.phone,
-      //   address:user.address.address,
-      //   name:user.firstName + ' ' + user.lastName,
-      //   email:user.email
-      //  }
-      //  localStorage.setItem("user", JSON.stringify(userlogin));
-      //  console.log(localStorage.getItem("user"));
 
     });
-    console.log(isSuccessful);
+
 
 
     setSubmitting(false);

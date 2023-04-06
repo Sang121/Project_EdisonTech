@@ -37,12 +37,6 @@ const SignupForm = () => {
   let users = JSON.parse(localStorage.getItem("users")) || [];
   const [userExists, setUserExists] = useState(false)
   const onSubmit = (values, { setSubmitting }) => {
-const SignupForm = () => {
-  const [popup, setPopup] = useState();
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-  const [userExists, setUserExists] = useState(false)
-  const onSubmit = (values, { setSubmitting }) => {
-
     console.log("click submit");
     if (users.filter(user => user.username === values.username).length > 0) {
 
@@ -56,38 +50,16 @@ const SignupForm = () => {
       password: values.password,
       fullName: values.fullName,
       phone: values.phone,
-
       email: values.email,
       address: values.address,
-      email: values.email,
-      address: values.address,
-
     };
     users.push(newUsers);
-   
-
     localStorage.setItem("users", JSON.stringify(users));
     setPopup(true)
-    localStorage.setItem("users", JSON.stringify(users));
-    setPopup(true)
-
-
     setSubmitting(false);
   }
   if (popup === false) {
-
-
     window.location.href = "/login";
-
-  }
-    setSubmitting(false);
-  }
-  if (popup === false) {
-
-
-    window.location.href = "/login";
-
-  }
   }
   return (
     <div className={styles.container}>
@@ -95,7 +67,7 @@ const SignupForm = () => {
       <div className={styles.logo}>
         <a href="/">
           {" "}
-          <img src={logo} className="logo" />
+          <img src={logo} className="logo-img" />
         </a>
       </div>
 
@@ -115,7 +87,7 @@ const SignupForm = () => {
 
         validationSchema={SignupSchema}
       >
-        
+
         <Form
           className={styles.form}>
           <div >
@@ -132,7 +104,7 @@ const SignupForm = () => {
             <label htmlFor="phone"></label>
             <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
             <p className={styles.khung}>  <ErrorMessage name="phone" component="div" className={styles.error} /></p>
-            </div>
+          </div>
           <div>
             <label htmlFor="address"></label>
             <Field type="text" placeholder='Address' name="address" className={styles.input} />
@@ -172,7 +144,7 @@ const SignupForm = () => {
       <Popup trigger={popup} setTrigger={setPopup}>
         <p><i class="fa check fa-check"></i> Create account success</p>
       </Popup>
-      
+
     </div>
   );
 }
