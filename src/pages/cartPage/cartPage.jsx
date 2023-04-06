@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './cartPage.css'
 import Popup from '../../components/Popup';
+import { Field, Formik } from 'formik';
 function CartPage() {
   const [popup, setPopup] = useState()
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
@@ -10,8 +11,10 @@ function CartPage() {
     setCartItems(updatedCart);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
+ 
+  const rawTotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalDiscount = cartItems.reduce((acc, item) => acc + (item.discountPercentage * item.price)/100 * item.quantity, 0);
   const total = cartItems.reduce((acc, item) => acc + item.new_price * item.quantity, 0);
-  console.log(cartItems)
   const isLoggedIn = localStorage.getItem('isLoggedIn')
   const Checkout = () => {
     if (isLoggedIn) {
@@ -20,13 +23,18 @@ function CartPage() {
     }
     else {
       setPopup(true)
-      
+
     }
   }
   if (popup === false) {
     setTimeout(() => {
       window.location.href = "/login"
     }, 1000)
+  }
+
+
+  const CheckOut = () => {
+
   }
   return (
 
@@ -42,10 +50,10 @@ function CartPage() {
         <div>
 
 
-          <div className="card ">
-            <div className="card-body ">
+          <div className="cart row " >
 
-              <table className='col-7'>
+            <div className='cart-form col-12 col-md-7 '>
+              <table className='cart-table '>
                 <thead className='p_title'>
 
                   <th className='p_img'> </th>
@@ -74,8 +82,45 @@ function CartPage() {
 
 
               </table>
+            </div>
+            <div class=" col-5 checkout-container" >
+
+              <Formik
+
+                onSubmit={CheckOut}
+
+              >
+                <form className='checkout-form'>
+                  <table className='Checkout-table'>
+
+                    <tr>
+                      <td className="small text-muted me-2">Total:</td> <th
+                        className="lead fw-normal">{rawTotal.toFixed(2)}$</th>
+                    </tr>
+                    <tr>
+
+                      <td className="small text-muted me-2">Discount:</td>
+                      <th
+                        className="lead fw-normal">{totalDiscount.toFixed(2)}$</th>
+                    </tr>
+                    <tr>
+
+                      <td className="small text-muted me-2">Order total:</td> <th
+                        className="lead fw-normal">{total.toFixed(2)}$</th>
+                    </tr>
+                    <tr colspan={2} >
+                      <Link to='./checkout'> <button type="button" onClick={Checkout} className="btn checkout-btn btn-primary btn-md">Checkout</button> </Link>
+                    </tr>
+                  </table>
+
+                </form>
+
+
+              </Formik>
 
             </div>
+
+
 
 
           </div>
@@ -93,9 +138,8 @@ function CartPage() {
               </div>
             </div>
 
-            <div className="d-flex tbtn justify-content-center">
+            <div className="d-flex  justify-content-center">
               <button type="button" className="btn btn-light btn-lg me-2"> <Link className='text-black' to='/'> Continue shopping </Link> </button>
-              <button type="button" onClick={Checkout} className="btn  btn-primary btn-lg">Checkout</button>
             </div>
           </div>
 
@@ -105,6 +149,9 @@ function CartPage() {
 
 
       )}
+
+
+
       <Popup trigger={popup} setTrigger={setPopup}>
         <p><i class="fa  fa-close"></i> You must login to checkout</p>
       </Popup>
