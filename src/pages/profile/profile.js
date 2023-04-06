@@ -24,7 +24,8 @@ const ProfileSchema = Yup.object().shape({
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
     .max(50, "Mật khẩu không được dài hơn 50 ký tự")
     .required("Vui lòng nhập mật khẩu"),
-
+  address: Yup.string()
+  .required("Địa chỉ không được bỏ trống"),
 });
 
 
@@ -66,7 +67,7 @@ const ProfileForm = () => {
 
 
 
-      <h2 className={styles.h} >General information</h2>
+     
       <Formik
         initialValues={{
           fullName: `${userLoggedIn.fullName}`,
@@ -84,19 +85,20 @@ const ProfileForm = () => {
 
 
         <Form className={styles.formProfile}>
+        <h2 className={styles.h} >General information</h2>
           <table>
-            <tr className={styles.item}>
-              <th> <label htmlFor="fullName">Name</label> </th>
+            <tr >
+              <th> <label className={styles.label} htmlFor="fullName">Name</label> </th>
               <th> <Field type="text" placeholder='Full Name' name="fullName" className={styles.input} /></th>
             </tr>
             <p className={styles.khung}> <ErrorMessage name="fullName" component="div" className={styles.error} /> </p>
-            <tr className={styles.item}>
-              <th> <label htmlFor="email">Email</label></th>
+            <tr>
+              <th> <label className={styles.label} htmlFor="email">Email</label></th>
               <th> <Field type="text" placeholder='Email' name="email" className={styles.input} /></th>
             </tr>
             <p className={styles.khung}>  <ErrorMessage name="email" component="div" className={styles.error} /></p>
-            <tr className={styles.item}>
-              <th> <label htmlFor="phone">Phone number</label></th>
+            <tr>
+              <th> <label className={styles.label} htmlFor="phone">Phone number</label></th>
               <th> <Field type="text" placeholder='Phone' name="phone" className={styles.input} /></th>
 
             </tr>
@@ -104,21 +106,21 @@ const ProfileForm = () => {
 
 
 
-            <tr className={styles.item}>
-              <th> <label htmlFor="address">Address</label></th>
+            <tr>
+              <th> <label className={styles.label} htmlFor="address">Address</label></th>
               <th> <Field type="text" placeholder='Address' name="address" className={styles.input} /></th>
 
             </tr>
-
-            <tr className={styles.item}>
-              <th> <label htmlFor="username">UserName</label></th>
+            <p className={styles.khung}><ErrorMessage name="address" component="div" className={styles.error} /> </p>
+            <tr>
+              <th> <label className={styles.label} htmlFor="username">UserName</label></th>
               <th> <Field type="text" placeholder='UserName' name="username" className={styles.input} /></th>
 
             </tr>
             <p className={styles.khung}> <ErrorMessage name="username" component="div" className={styles.error} /> </p>
 
-            <tr className={styles.item}>
-              <th>  <label htmlFor="password">Password</label></th>
+            <tr>
+              <th>  <label className={styles.label} htmlFor="password">Password</label></th>
               <th>  <Field type="password" placeholder='Password' name="password" className={styles.input} /></th>
 
             </tr>
