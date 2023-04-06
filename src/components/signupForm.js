@@ -31,6 +31,12 @@ const SignupSchema = Yup.object().shape({
 });
 
 
+
+const SignupForm = () => {
+  const [popup, setPopup] = useState();
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  const [userExists, setUserExists] = useState(false)
+  const onSubmit = (values, { setSubmitting }) => {
 const SignupForm = () => {
   const [popup, setPopup] = useState();
   let users = JSON.parse(localStorage.getItem("users")) || [];
@@ -53,10 +59,15 @@ const SignupForm = () => {
 
       email: values.email,
       address: values.address,
+      email: values.email,
+      address: values.address,
 
     };
     users.push(newUsers);
+   
 
+    localStorage.setItem("users", JSON.stringify(users));
+    setPopup(true)
     localStorage.setItem("users", JSON.stringify(users));
     setPopup(true)
 
@@ -69,7 +80,15 @@ const SignupForm = () => {
     window.location.href = "/login";
 
   }
+    setSubmitting(false);
+  }
+  if (popup === false) {
 
+
+    window.location.href = "/login";
+
+  }
+  }
   return (
     <div className={styles.container}>
 
@@ -95,9 +114,8 @@ const SignupForm = () => {
         onSubmit={onSubmit}
 
         validationSchema={SignupSchema}
-
-
       >
+        
         <Form
           className={styles.form}>
           <div >
@@ -114,9 +132,7 @@ const SignupForm = () => {
             <label htmlFor="phone"></label>
             <Field type="text" placeholder='Phone' name="phone" className={styles.input} />
             <p className={styles.khung}>  <ErrorMessage name="phone" component="div" className={styles.error} /></p>
-
-          </div>
-
+            </div>
           <div>
             <label htmlFor="address"></label>
             <Field type="text" placeholder='Address' name="address" className={styles.input} />
@@ -136,7 +152,6 @@ const SignupForm = () => {
           <div>
             <label htmlFor="confirmPassword"></label>
             <Field type="password" placeholder='Confirm Password' name="confirmPassword" className={styles.input} />
-            {/* <p className={styles.khung}></p> */}
           </div>
           <p className={styles.khung}><ErrorMessage
             name="confirmPassword"
@@ -157,8 +172,8 @@ const SignupForm = () => {
       <Popup trigger={popup} setTrigger={setPopup}>
         <p><i class="fa check fa-check"></i> Create account success</p>
       </Popup>
+      
     </div>
   );
-};
-
+}
 export default SignupForm
