@@ -4,21 +4,36 @@
    align-items: center ;
 }
 .formProfile{
-    width: 35%;
+    width: 40%;
    border-radius: 15px;
     padding :10px;
     display: flex ;
     flex-direction: column;
-   
+    background-color: rgb(223, 223, 223);
 
+}
+
+.label{
+margin-left: 20%;
+}
+
+.h{
+    text-align: center;
 }
 tr{
     height: 100%;
 }
+
+.khung{
+   height: 10px;
+}
+
 .input{
     border-radius: 15px;
     padding: 10px;
     margin-bottom: 10px;
+    width: 100%;
+    margin-left: -8%;
 }
 .btnSubmit{
     border:none;
@@ -27,6 +42,7 @@ tr{
     background-color: cornflowerblue;
    width: 30%;
    transition: 0.3;
+ 
 }
 .btnSubmit:hover{
     transform: scale(1.05);
@@ -37,3 +53,10 @@ tr{
     transform: scale(0.95);
 }
 
+@media only screen and (max-width: 768px)  {
+    
+    .formProfile{
+      width: 70%;
+    }
+    
+  }
