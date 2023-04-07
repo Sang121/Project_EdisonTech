@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 import Home from './pages/Home/Home';
-import './App.css';
+
 
 import Login from './pages/Login/login';
 import Register from './pages/register/register';
@@ -11,7 +11,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import CartPage from "./pages/cartPage/cartPage"
 import ProductDetail from "./pages/productDetail/productDetail";
-
+import './App.css';
 function App() {
 
   return (
