@@ -12,7 +12,6 @@ function Header() {
   const [popup1, setPopup1] = useState(false);
   const [popup2, setPopup2] = useState(false);
   const navigate = useNavigate();
-  const cart=JSON.parse(localStorage.getItem('cart'));
   
   let isLoggedIn = localStorage.getItem('isLoggedIn') 
   const handleSubmit = event => {
@@ -33,7 +32,7 @@ function Header() {
     catch (error) {
       console.log(error);
     }
-  }, [cart.length]);
+  }, []);
   const Logout = () => {
     if (isLoggedIn){
 
