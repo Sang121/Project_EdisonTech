@@ -18,7 +18,7 @@ function ProductDetail() {
   const [addSuccess, setAddSuccess] = useState(false);
   let { id } = useParams();
   const new_price = (product.price * (100 - product.discountPercentage) / 100).toFixed(2)
-
+  
   useEffect(() => {
     if (id) {
       try {
@@ -34,7 +34,9 @@ function ProductDetail() {
     }
 
   }, [id]);
-
+  const [selectedImage, setSelectedImage] = useState();
+  
+  
   const handleAddToCart = () => {
     const item = {
       id: product.id, price: product.price, discountPercentage: product.discountPercentage, new_price: ((100 - product.discountPercentage) * product.price) / 100,
@@ -70,6 +72,9 @@ function ProductDetail() {
     setQuantity(1)
   }
   localStorage.setItem('cart', JSON.stringify(cartItems));
+  function handleImageClick(image) {
+    setSelectedImage(image);
+  }
   return (
     <div>
       <div className="details-container row">
@@ -86,11 +91,7 @@ function ProductDetail() {
           ) :
             <ul className="nav nav-tabs nav-justified">
               <li className="img-cover">
-                <img
-                  src={product.thumbnail}
-                  alt={product.title}
-                  className="col-12"
-                />
+              <img src={ `${selectedImage? selectedImage : product.images[0] }` }alt={product.title} className="col-12" />
               </li>
 
               <li>
@@ -98,7 +99,7 @@ function ProductDetail() {
                   <ul className="small-img" >
                     {product.images.slice(0, 4).map((image, index) => (
                       <li key={index} >
-                        <img src={image} className='item' alt={`Product Image ${index}`} />
+                        <img src={image} className='item' alt={`Product Image ${index}`}  onClick={() => handleImageClick(image)} />
                       </li>
                     ))}
                   </ul>
