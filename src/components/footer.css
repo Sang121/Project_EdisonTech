@@ -29,3 +29,11 @@
     color: black ;
     text-decoration: none;
 }
+@media only screen and (max-width: 500px) {
+  .line1 ul{
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+}

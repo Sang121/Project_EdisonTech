@@ -3,10 +3,8 @@
   flex-direction: column;
 }
 .cart-title {
-
   display: flex;
   top: 50%;
-  
 }
 thead {
   margin: none;
@@ -14,6 +12,7 @@ thead {
 }
 .cart-table {
   margin-left: 10px;
+  margin-right: 20px;
   border: 5px solid transparent;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -34,7 +33,7 @@ thead {
   border-bottom: 1px solid #6c6666;
 }
 .cart_img {
-  min-width: 90px;
+  min-width: 70px;
   width: 80%;
   border-radius: 10%;
   object-fit: fill;
@@ -93,12 +92,14 @@ thead {
   transform: translateY(0px);
 }
 @media only screen and (max-width: 776px) {
-  .checkout-form{
+  .checkout-form {
     margin-top: 20px;
+    margin-left: 20px;
   }
 }
 @media only screen and (max-width: 420px) {
   .cart {
     margin: 0;
   }
+ 
 }
