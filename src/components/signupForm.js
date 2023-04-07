@@ -22,6 +22,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/, "Vui lòng nhập số điện thoại hợp lệ")
     .required("Vui lòng nhập số điện thoại"),
   password: Yup.string()
+    .matches(/(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{6}/, "Mật khẩu phải có ít nhất 8 ký tự, chứa ít nhất 1 chữ hoa, 1 số và 1 ký tự đặc biệt")
     .min(6, "Mật khẩu phải có ít nhất 6 ký tự")
     .max(50, "Mật khẩu không được dài hơn 50 ký tự")
     .required("Vui lòng nhập mật khẩu"),
@@ -93,7 +94,7 @@ const SignupForm = () => {
           <h1 className={styles.h1}>Create an account</h1>
           <div >
             <label htmlFor="fullName"></label>
-            <Field  type="text" placeholder='FullName' name="fullName" className={styles.input} />
+            <Field type="text" placeholder='FullName' name="fullName" className={styles.input} />
           </div>
           <p className={styles.khung}> <ErrorMessage name="fullName" component="div" className={styles.error} /> </p>
           <div>
