@@ -1,16 +1,19 @@
 .navs {
-  background-image: linear-gradient(to bottom,#F7CACA, #45c3ed);
+  /* background-color:#45c3ed; */
+  background-color: black;
   display: flex;
   flex-direction: row;
+ 
 }
+
 .topnav {
+ 
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 .sidebar_btn{
-  position: fixed;
-  z-index: 10;
+ 
   margin-left:10px;
 }
 .nav {
@@ -18,7 +21,7 @@
   width: 100%;
 }
 .btn-header {
-  color: black;
+color: white;
   transition: transform 0.04s;
 }
 .btn-header:hover {
@@ -51,7 +54,11 @@
 input:focus {
   outline: none;
 }
+.titles{
+  display: none;
+}
 .titles .item {
+  color: white;
   font-size: small;
   transition: transform 0.04s;
   border-radius: 10px;

@@ -16,7 +16,7 @@ function ProductList() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-  
+
   const [addSuccess, setAddSuccess] = useState(false);
   const getProducts = async (pg = page, pgSize = 20) => {
     try {
@@ -65,9 +65,9 @@ function ProductList() {
   const findItemIndex = (cart, id) => {
     return cart.findIndex((item) => item.id === id);
   }
- 
+
   return (
-    <div >
+    <div className='aa' >
 
       <Carousel className='slide' activeIndex={index} onSelect={handleSelect}>
         {products?.map((product, index) => (
@@ -97,11 +97,11 @@ function ProductList() {
 
 
               <div className='cardViewContainer' key={index}><div className="cardView">
-              
+
                 <img src={product.thumbnail} className="thumbnail" />
-                
-                
-              
+
+
+
                 <div className='detail'>
                   <Link className='text-black' to={`/product/${product.id}`}>
                     <h6 className='title'> {product.title}</h6>
@@ -117,28 +117,38 @@ function ProductList() {
                     <p className='old-price'>${product.price}</p>
                   </div>
                   <div className='add-cart'>
-                    <button onClick={()=>{
+                    <button onClick={() => {
+                      
                       const item = {
                         id: product.id, price: product.price, discountPercentage: product.discountPercentage, new_price: ((100 - product.discountPercentage) * product.price) / 100,
                         thumbnail: product.thumbnail, title: product.title, quantity: 1
                       };
-                    
-                 
+
+
                       const itemIndex = findItemIndex(cartItems, product.id);
-                  
+console.log("bắt đầu");
                       if (itemIndex !== -1) {
                         // If the item already exists in the cart, increase its quantity by 1
+                        console.log("sản phẩm tồn tại")
                         const updatedCart = [...cartItems];
                         updatedCart[itemIndex].quantity += 1;
-                        setCartItems(updatedCart);
+                        setCartItems(cartItems);
+                        localStorage.setItem('cart', JSON.stringify(updatedCart));
                       } else {
+                        console.log("sản phẩm chưa tồn tại")
                         // If the cart does not exist, create a new array and add the new item to it
                         const updatedCart = [...cartItems, item];
+                        
                         setCartItems(updatedCart);
+                        localStorage.setItem('cart', JSON.stringify(updatedCart));
+
                       }
-                      localStorage.setItem('cart', JSON.stringify(cartItems));
-                      
-                  
+                   
+
+                     
+
+
+
                       setAddSuccess(true)
                     }} class=' cus-btn  add-btn'><span class='add'>Add to Cart</span></button>
 

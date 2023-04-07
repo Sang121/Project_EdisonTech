@@ -90,9 +90,10 @@ const SignupForm = () => {
 
         <Form
           className={styles.form}>
+          <h1 className={styles.h1}>Create an account</h1>
           <div >
             <label htmlFor="fullName"></label>
-            <Field type="text" placeholder='FullName' name="fullName" className={styles.input} />
+            <Field  type="text" placeholder='FullName' name="fullName" className={styles.input} />
           </div>
           <p className={styles.khung}> <ErrorMessage name="fullName" component="div" className={styles.error} /> </p>
           <div>

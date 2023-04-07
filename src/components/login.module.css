@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: row;
   height: 700px;
-  background-image: linear-gradient( #45c3ed,#cfc1c1);
 }
 .logo{
   height: 60%;
@@ -160,7 +159,7 @@ margin-bottom: 50px;
   outline: none;
   background: transparent;
 }
-.container .item label {
+label {
   position: absolute;
   top:-17px;
   left: 0;
