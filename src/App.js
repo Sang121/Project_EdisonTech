@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
 import Home from './pages/Home/Home';
-
+import './App.css';
 
 import Login from './pages/Login/login';
 import Register from './pages/register/register';
@@ -11,11 +11,15 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import CartPage from "./pages/cartPage/cartPage"
 import ProductDetail from "./pages/productDetail/productDetail";
-import './App.css';
+import { Helmet } from 'react-helmet';
 function App() {
 
   return (
     <div>
+    <Helmet>
+        <title>Eco Shop</title>
+        <meta name="description" content="trang thương mại điện tử số 1 Việt Nam" />
+      </Helmet>
       <Router>
         <Header />
         <Routes>
