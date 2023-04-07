@@ -159,7 +159,7 @@ margin-bottom: 50px;
   outline: none;
   background: transparent;
 }
-label {
+.container .item label {
   position: absolute;
   top:-17px;
   left: 0;
