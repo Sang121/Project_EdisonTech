@@ -166,7 +166,7 @@ console.log("bắt đầu");
       <div className='page'>
         <button onClick={prePage} disabled={page === 1}>Previous</button>
 
-        {Array.from({ length: Math.min(Math.ceil(totalCount / pageSize)) }, (v, i) => i + 1).map((pageNumber) => (
+        {Array.from({ length: Math.min(Math.ceil(totalCount/  pageSize)) }, (v, i) => i + 1).map((pageNumber) => (
           <button key={pageNumber} onClick={() => setPage(pageNumber)}>{pageNumber}</button>
         ))}
 
